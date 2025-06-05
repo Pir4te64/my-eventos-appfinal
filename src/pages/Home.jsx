@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from '../components/Slider'
-import TrustLogos from '../components/TrustLogos'
+// import TrustLogos from '../components/TrustLogos'
 import CarouselCards from '../components/CarouselCards'
 import FeaturesSection from '../components/FeaturesSection'
 import Testimonial from '../components/Testimonial'
@@ -14,17 +14,11 @@ export default function Home() {
     { image:'/c3.jpg', title:'UX Analytics', subtitle:'Design', rating:4.8, reviews:'44k' },
     { image:'/c4.jpg', title:'UX Analytics', subtitle:'Design', rating:4.8, reviews:'44k' }
   ]
-  const mentorItems = [
-    { image:'/m1.jpg', title:'Darrell Steward', subtitle:'Designer', rating:4.8, reviews:'44k' },
-    { image:'/m2.jpg', title:'Darrell Steward', subtitle:'Designer', rating:4.8, reviews:'44k' },
-    { image:'/m3.jpg', title:'Darrell Steward', subtitle:'Designer', rating:4.8, reviews:'44k' },
-    { image:'/m4.jpg', title:'Darrell Steward', subtitle:'Designer', rating:4.8, reviews:'44k' }
-  ]
 
   return (
     <>
       <Slider />
-      <TrustLogos />
+      {/* <TrustLogos /> */}
       <CarouselCards items={courseItems} />
       <FeaturesSection />
       <Testimonial />
