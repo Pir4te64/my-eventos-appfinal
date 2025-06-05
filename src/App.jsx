@@ -8,10 +8,12 @@ import Seccion2 from './pages/Seccion2'
 import Seccion3 from './pages/Seccion3'
 import Seccion4 from './pages/Seccion4'
 import Contacto from './pages/Contacto'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <ScrollToTop />
       <NavBarEventos />
       <main className="container mx-auto px-4 py-8">
         <Routes>
