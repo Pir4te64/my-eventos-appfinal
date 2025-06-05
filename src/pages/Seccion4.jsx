@@ -226,8 +226,15 @@ export default function Seccion4() {
           ))}
         </div>
       ) : (
-        <div>
-          <button onClick={() => setSelectedCategory(null)}>Volver a categorías</button>
+        <>
+          <div className="max-w-7xl mx-auto flex items-start">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className="mt-8 ml-8 px-6 py-2 bg-green-800 text-white rounded-full font-bevietnam font-semibold text-base shadow hover:bg-green-900 transition-colors"
+            >
+              Volver a categorías
+            </button>
+          </div>
           {/* Renderizar la lista correspondiente a la categoría seleccionada */}
           {selectedCategory.name === 'Hoteles' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
@@ -466,7 +473,7 @@ export default function Seccion4() {
                   onChange={e => setSearchD(e.target.value)}
                 />
               </aside>
-              <main className="md:w-3/4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <main className="md:w-3/4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 {filteredD.length === 0 && (
                   <div className="col-span-full text-center text-gray-500">No se encontraron sedes deportivas con ese nombre.</div>
                 )}
@@ -500,7 +507,7 @@ export default function Seccion4() {
               </main>
             </div>
           )}
-        </div>
+        </>
       )}
 
       {/* Drawer de detalles hoteles */}
