@@ -1,42 +1,30 @@
 // src/App.jsx
 import React from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import NavBarEventos from './components/Navbar'
 import Home from './pages/Home'
-import Eventos from './pages/Eventos'
-import EventoDetalle from './pages/EventoDetalle'
+import Seccion1 from './pages/Seccion1'
+import Seccion2 from './pages/Seccion2'
+import Seccion3 from './pages/Seccion3'
+import Seccion4 from './pages/Seccion4'
 import Contacto from './pages/Contacto'
-import Evento1 from './pages/Evento1'
-import Evento2 from './pages/Evento2'
-import Evento3 from './pages/Evento3'
-import Evento4 from './pages/Evento4'
 
-export default function App() {
+function App() {
   return (
-    <>
+    <div className="min-h-screen bg-gray-50">
       <NavBarEventos />
-      <Routes>
-        {/* Página principal */}
-        <Route path="/" element={<Home />} />
-
-        {/* Listado de eventos */}
-        <Route path="/eventos" element={<Eventos />} />
-
-        {/* Rutas específicas para cada evento */}
-        <Route path="/eventos/1" element={<Evento1 />} />
-        <Route path="/eventos/2" element={<Evento2 />} />
-        <Route path="/eventos/3" element={<Evento3 />} />
-        <Route path="/eventos/4" element={<Evento4 />} />
-
-        {/* Ruta genérica por si quieres manejar otros IDs */}
-        <Route path="/eventos/:id" element={<EventoDetalle />} />
-
-        {/* Contacto */}
-        <Route path="/contacto" element={<Contacto />} />
-
-        {/* Cualquier otra → redirige a Home */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </>
+      <main className="container mx-auto px-4 py-8">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/seccion1" element={<Seccion1 />} />
+          <Route path="/seccion2" element={<Seccion2 />} />
+          <Route path="/seccion3" element={<Seccion3 />} />
+          <Route path="/seccion4" element={<Seccion4 />} />
+          <Route path="/contacto" element={<Contacto />} />
+        </Routes>
+      </main>
+    </div>
   )
 }
+
+export default App

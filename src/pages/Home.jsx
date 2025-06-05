@@ -10,11 +10,15 @@ import Footer from '../components/Footer'
 export default function Home() {
   const courseItems = [
     { image:'/c1.jpg', title:'UX Analytics', subtitle:'Design', rating:4.8, reviews:'44k' },
-    /* …3 más… */
+    { image:'/c2.jpg', title:'UX Analytics', subtitle:'Design', rating:4.8, reviews:'44k' },
+    { image:'/c3.jpg', title:'UX Analytics', subtitle:'Design', rating:4.8, reviews:'44k' },
+    { image:'/c4.jpg', title:'UX Analytics', subtitle:'Design', rating:4.8, reviews:'44k' }
   ]
   const mentorItems = [
     { image:'/m1.jpg', title:'Darrell Steward', subtitle:'Designer', rating:4.8, reviews:'44k' },
-    /* …3 más… */
+    { image:'/m2.jpg', title:'Darrell Steward', subtitle:'Designer', rating:4.8, reviews:'44k' },
+    { image:'/m3.jpg', title:'Darrell Steward', subtitle:'Designer', rating:4.8, reviews:'44k' },
+    { image:'/m4.jpg', title:'Darrell Steward', subtitle:'Designer', rating:4.8, reviews:'44k' }
   ]
 
   return (

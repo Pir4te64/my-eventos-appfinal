@@ -1,117 +1,118 @@
 // src/components/Navbar.jsx
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Menu, Transition } from '@headlessui/react'
+import { Fragment } from 'react'
 
 export default function NavBarEventos() {
-  const [openMenu, setOpenMenu] = useState(false)
-  const [openEventos, setOpenEventos] = useState(false)
-  const eventosRef = useRef()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // Cierra el dropdown de Eventos al clicar fuera
-  useEffect(() => {
-    function onClick(e) {
-      if (eventosRef.current && !eventosRef.current.contains(e.target)) {
-        setOpenEventos(false)
-      }
-    }
-    document.addEventListener('mousedown', onClick)
-    return () => document.removeEventListener('mousedown', onClick)
-  }, [])
-
-  const eventos = ['1','2','3','4']
+  const sections = [
+    { path: '/seccion1', name: '¿Nos Reunimos en Posadas?' },
+    { path: '/seccion2', name: 'Parque del Conocimiento' },
+    { path: '/seccion3', name: 'Agenda MICE y Eventos Deportivos' },
+    { path: '/seccion4', name: 'Sedes para Eventos' }
+  ]
 
   return (
-    <header className="bg-green-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center space-x-6">
-        {/* Logo como imagen */}
-        <Link to="/">
-          <img
-            src="/logoposadas.png"
-            alt="Logo Posadas"
-            className="h-8 w-auto"
-          />
-        </Link>
-
-        {/* Search */}
-        <div className="flex-1 relative max-w-md">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
-          <input
-            type="text"
-            placeholder="Buscar eventos"
-            className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-300 bg-white"
-          />
-        </div>
-
-        {/* Nav escritorio */}
-        <nav className="hidden md:flex items-center space-x-4 text-green-800">
-          <Link to="/" className="hover:underline px-3 py-2 rounded hover:bg-gray-100">
-            Inicio
+    <header className="bg-white shadow-md sticky top-0 z-50">
+      <nav className="max-w-7xl mx-auto px-4 py-3">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img src="/logoposadas.png" alt="Logo Posadas" className="h-8 w-auto" />
           </Link>
 
-          <div className="relative" ref={eventosRef}>
-            <button
-              onClick={() => setOpenEventos(prev => !prev)}
-              className="flex items-center px-3 py-2 rounded hover:bg-gray-100"
-            >
-              Eventos <span className="ml-1 text-sm">▾</span>
-            </button>
-            {openEventos && (
-              <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md z-10">
-                {eventos.map(id => (
-                  <Link
-                    key={id}
-                    to={`/eventos/${id}`}
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Evento {id}
-                  </Link>
-                ))}
-              </div>
-            )}
+          {/* Navegación Desktop */}
+          <div className="hidden md:flex items-center space-x-2">
+            <Link to="/" className="text-green-800 hover:bg-green-800 hover:text-white px-3 py-1.5 rounded-md transition-colors text-sm font-medium">
+              Inicio
+            </Link>
+            
+            <Menu as="div" className="relative">
+              <Menu.Button className="text-green-800 hover:bg-green-800 hover:text-white px-3 py-1.5 rounded-md transition-colors text-sm font-medium flex items-center">
+                Secciones
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </Menu.Button>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="py-1">
+                    {sections.map(section => (
+                      <Menu.Item key={section.path}>
+                        {({ active }) => (
+                          <Link
+                            to={section.path}
+                            className={`${
+                              active ? 'bg-green-800 text-white' : 'text-gray-700'
+                            } block px-4 py-2 text-sm`}
+                          >
+                            {section.name}
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    ))}
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+
+            <Link to="/contacto" className="text-green-800 hover:bg-green-800 hover:text-white px-3 py-1.5 rounded-md transition-colors text-sm font-medium">
+              Contacto
+            </Link>
           </div>
 
-          <Link to="/contacto" className="hover:underline px-3 py-2 rounded hover:bg-gray-100">
-            Contacto
-          </Link>
-        </nav>
-
-        {/* Toggle móvil */}
-        <button
-          className="md:hidden ml-2 p-2 bg-green-900 hover:bg-green-100 rounded-lg"
-          onClick={() => setOpenMenu(prev => !prev)}
-        >
-          {openMenu ? '✕' : '☰'}
-        </button>
-      </div>
-
-      {/* Menú móvil */}
-      {openMenu && (
-        <div className="md:hidden bg-green-50 px-6 pb-4 space-y-2">
-          <Link to="/" className="block py-2 rounded hover:bg-gray-100">Inicio</Link>
-
+          {/* Botón Menú Móvil */}
           <button
-            className="w-full text-left py-2 flex items-center justify-between rounded hover:bg-gray-100"
-            onClick={() => setOpenEventos(prev => !prev)}
+            className="md:hidden p-2 rounded-lg text-green-800 hover:bg-green-800 hover:text-white transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            Eventos <span>▾</span>
+            {isMenuOpen ? '✕' : '☰'}
           </button>
-          {openEventos && (
-            <div className="pl-4 space-y-1">
-              {eventos.map(id => (
-                <Link
-                  key={id}
-                  to={`/eventos/${id}`}
-                  className="block py-2 rounded hover:bg-gray-100"
-                >
-                  Evento {id}
-                </Link>
-              ))}
-            </div>
-          )}
-
-          <Link to="/contacto" className="block py-2 rounded hover:bg-gray-100">Contacto</Link>
         </div>
-      )}
+
+        {/* Menú Móvil */}
+        {isMenuOpen && (
+          <div className="md:hidden mt-2 space-y-1 bg-white rounded-lg shadow-lg p-2">
+            <Link
+              to="/"
+              className="block text-green-800 hover:bg-green-800 hover:text-white px-3 py-2 rounded-md transition-colors text-sm font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Inicio
+            </Link>
+            
+            {sections.map(section => (
+              <Link
+                key={section.path}
+                to={section.path}
+                className="block text-green-800 hover:bg-green-800 hover:text-white px-3 py-2 rounded-md transition-colors text-sm font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {section.name}
+              </Link>
+            ))}
+
+            <Link
+              to="/contacto"
+              className="block text-green-800 hover:bg-green-800 hover:text-white px-3 py-2 rounded-md transition-colors text-sm font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contacto
+            </Link>
+          </div>
+        )}
+      </nav>
     </header>
   )
 }
