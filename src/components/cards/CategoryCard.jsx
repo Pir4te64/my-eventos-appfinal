@@ -30,6 +30,15 @@ const StyledWrapper = styled.div`
     text-decoration: none;
     cursor: pointer;
   }
+  @media (max-width: 640px) {
+    .card {
+      width: 92vw;
+      max-width: 420px;
+      margin-bottom: 1.5rem;
+      height: 270px;
+      border-radius: 18px;
+    }
+  }
   .card:hover {
     transform: translateY(-5px) scale(1.015) translateZ(0);
     box-shadow: 0 24px 36px rgba(22,101,52,0.13), 0 24px 46px rgba(22,101,52,0.10);

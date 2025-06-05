@@ -38,6 +38,29 @@ const StyledWrapper = styled.div`
     justify-items: center;
     align-items: center;
   }
+  @media (max-width: 640px) {
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      width: 100vw;
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0;
+      justify-items: center;
+      align-items: center;
+    }
+    .cards .card {
+      margin-left: 0;
+      margin-right: 0;
+      width: 92vw;
+      max-width: 210px;
+      min-width: 140px;
+      height: 210px;
+      border-radius: 16px;
+    }
+  }
   .cards .card {
     background: none;
     box-shadow: none;
