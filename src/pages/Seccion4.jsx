@@ -211,13 +211,13 @@ export default function Seccion4() {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const categories = [
-    { name: 'Hoteles', icon: <FaHotel />, color: 'red', data: filtered },
-    { name: 'Asociaciones', icon: <FaUsers />, color: 'blue', data: filteredA },
-    { name: 'Privados', icon: <FaBuilding />, color: 'green', data: filteredP },
-    { name: 'Locaciones', icon: <FaMapMarkerAlt />, color: 'red', data: filteredL },
-    { name: 'Gubernamentales', icon: <FaUniversity />, color: 'blue', data: filteredG },
-    { name: 'Bares', icon: <FaGlassCheers />, color: 'green', data: filteredB },
-    { name: 'Deportivas', icon: <FaFutbol />, color: 'red', data: filteredD },
+    { name: 'Hoteles con salones', icon: <FaHotel />, color: 'red', data: filtered },
+    { name: (<><span>Salones en</span><br/><span>Asociaciones</span></>), icon: <FaUsers />, color: 'blue', data: filteredA },
+    { name: 'Salones privados', icon: <FaBuilding />, color: 'green', data: filteredP },
+    { name: 'Locaciones complementarias', icon: <FaMapMarkerAlt />, color: 'red', data: filteredL },
+    { name: 'Salones gubernamentales', icon: <FaUniversity />, color: 'blue', data: filteredG },
+    { name: (<><span>Bares y Restaurantes</span><br/><span>para Eventos</span></>), icon: <FaGlassCheers />, color: 'green', data: filteredB },
+    { name: 'Salones en Instituciones Educativas', icon: <FaFutbol />, color: 'red', data: filteredD },
     { name: 'Bureau', icon: <FaBriefcase />, color: 'blue', data: filteredBu }
   ];
 
@@ -259,11 +259,11 @@ export default function Seccion4() {
             </button>
           </div>
           {/* Renderizar la lista correspondiente a la categoría seleccionada */}
-          {selectedCategory.name === 'Hoteles' && (
+          {selectedCategory.name === 'Hoteles con Salones' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros hoteles */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
-                <h2 className="text-lg font-semibold mb-4 text-green-800">Filtrar hoteles</h2>
+                <h2 className="text-lg font-semibold mb-4 text-green-800">Filtrar hoteles con salones</h2>
                 <input
                   type="text"
                   placeholder="Buscar por nombre..."
@@ -290,7 +290,7 @@ export default function Seccion4() {
               </aside>
               <main className="md:w-3/4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filtered.length === 0 && (
-                  <div className="col-span-full text-center text-gray-500">No se encontraron hoteles con esos filtros.</div>
+                  <div className="col-span-full text-center text-gray-500">No se encontraron hoteles con salones con esos filtros.</div>
                 )}
                 {filtered.map((h, i) => (
                   <HotelCard key={i} hotel={h} onClick={() => { setSelectedHotel(h); setIsOpen(true) }} />
@@ -299,11 +299,11 @@ export default function Seccion4() {
             </div>
           )}
           {/* Repetir para otras categorías */}
-          {selectedCategory.name === 'Asociaciones' && (
+          {selectedCategory.name === 'Salones en<br/>Asociaciones' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros asociaciones */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
-                <h2 className="text-lg font-semibold mb-4 text-green-800">Filtrar asociaciones</h2>
+                <h2 className="text-lg font-semibold mb-4 text-green-800">Filtrar salones en asociaciones</h2>
                 <input
                   type="text"
                   placeholder="Buscar por nombre..."
@@ -330,7 +330,7 @@ export default function Seccion4() {
               </aside>
               <main className="md:w-3/4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredA.length === 0 && (
-                  <div className="col-span-full text-center text-gray-500">No se encontraron asociaciones con esos filtros.</div>
+                  <div className="col-span-full text-center text-gray-500">No se encontraron salones en asociaciones con esos filtros.</div>
                 )}
                 {filteredA.map((a, i) => (
                   <AsociacionCard key={i} asoc={a} onClick={() => { setSelectedAsoc(a); setIsOpenA(true) }} />
@@ -611,7 +611,7 @@ export default function Seccion4() {
         </Dialog>
       </Transition.Root>
 
-      {/* Drawer de detalles asociaciones */}
+      {/* Drawer de detalles salones en asociaciones */}
       <Transition.Root show={isOpenA} as={React.Fragment}>
         <Dialog as="div" className="relative z-50" onClose={() => setIsOpenA(false)}>
           <Transition.Child
