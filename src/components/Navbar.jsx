@@ -11,7 +11,12 @@ export default function NavBarEventos() {
     { path: '/seccion1', name: '¿Nos Reunimos en Posadas?' },
     { path: '/seccion2', name: 'Parque del Conocimiento' },
     { path: '/seccion3', name: 'Agenda MICE y Eventos Deportivos' },
-    { path: '/seccion4', name: 'Sedes para Eventos' }
+    { path: '/seccion4', name: 'Sedes para Eventos' },
+    { path: '/seccion5', name: 'Posadas Deportiva' },
+    { path: '/seccion6', name: 'Posadas Sustentable' },
+    { path: '/seccion7', name: 'Posadas Universitaria' },
+    { path: '/seccion8', name: 'Posadas Congresos y Convenciones Bureau' },
+    { path: '/seccion9', name: 'Conectividad' }
   ]
 
   return (
