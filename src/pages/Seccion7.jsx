@@ -129,7 +129,7 @@ export default function Seccion7() {
           <div className="bg-white rounded-xl shadow-lg p-8">
             <div className="text-center text-gray-500 mb-4">
               <div className="text-4xl mb-2">📋</div>
-              <p>Información detallada disponible en el Excel "SALONES EN INSTITUCIONES EDUCATIVAS"</p>
+              <p></p>
             </div>
             <div className="grid md:grid-cols-3 gap-6 mt-8">
               <div className="text-center p-6 border border-gray-200 rounded-lg">
