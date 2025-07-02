@@ -210,6 +210,21 @@ export default function Seccion4() {
 
   const [selectedCategory, setSelectedCategory] = useState(null);
 
+  // Función auxiliar para obtener el nombre como string
+  const getCategoryName = (category) => {
+    if (typeof category.name === 'string') {
+      return category.name;
+    }
+    // Para elementos JSX, extraer el texto
+    if (category.name.props && category.name.props.children) {
+      if (Array.isArray(category.name.props.children)) {
+        return category.name.props.children[0].props.children;
+      }
+      return category.name.props.children;
+    }
+    return '';
+  };
+
   const categories = [
     { name: 'Hoteles con salones', icon: <FaHotel />, color: 'red', data: filtered },
     { name: (<><span>Salones en</span><br/><span>Asociaciones</span></>), icon: <FaUsers />, color: 'blue', data: filteredA },
@@ -259,7 +274,7 @@ export default function Seccion4() {
             </button>
           </div>
           {/* Renderizar la lista correspondiente a la categoría seleccionada */}
-          {selectedCategory.name === 'Hoteles con Salones' && (
+          {getCategoryName(selectedCategory) === 'Hoteles con salones' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros hoteles */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
@@ -299,7 +314,7 @@ export default function Seccion4() {
             </div>
           )}
           {/* Repetir para otras categorías */}
-          {selectedCategory.name === 'Salones en<br/>Asociaciones' && (
+          {getCategoryName(selectedCategory) === 'Salones en' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros asociaciones */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
@@ -339,7 +354,7 @@ export default function Seccion4() {
             </div>
           )}
           {/* Repetir para otras categorías */}
-          {selectedCategory.name === 'Privados' && (
+          {getCategoryName(selectedCategory) === 'Salones privados' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros privados */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
@@ -379,7 +394,7 @@ export default function Seccion4() {
             </div>
           )}
           {/* Repetir para otras categorías */}
-          {selectedCategory.name === 'Locaciones' && (
+          {getCategoryName(selectedCategory) === 'Locaciones complementarias' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros locaciones */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
@@ -419,7 +434,7 @@ export default function Seccion4() {
             </div>
           )}
           {/* Repetir para otras categorías */}
-          {selectedCategory.name === 'Gubernamentales' && (
+          {getCategoryName(selectedCategory) === 'Salones gubernamentales' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros gubernamentales */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
@@ -459,7 +474,7 @@ export default function Seccion4() {
             </div>
           )}
           {/* Repetir para otras categorías */}
-          {selectedCategory.name === 'Bares' && (
+          {getCategoryName(selectedCategory) === 'Bares y Restaurantes' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros bares */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
@@ -483,7 +498,7 @@ export default function Seccion4() {
             </div>
           )}
           {/* Repetir para otras categorías */}
-          {selectedCategory.name === 'Deportivas' && (
+          {getCategoryName(selectedCategory) === 'Salones en Instituciones Educativas' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros deportivas */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
@@ -507,7 +522,7 @@ export default function Seccion4() {
             </div>
           )}
           {/* Repetir para otras categorías */}
-          {selectedCategory.name === 'Bureau' && (
+          {getCategoryName(selectedCategory) === 'Bureau' && (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-12 px-2 justify-center items-start">
               {/* Sidebar de filtros bureau */}
               <aside className="md:w-1/4 w-full bg-white rounded-2xl shadow-lg p-6 mb-8 md:mb-0">
