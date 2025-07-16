@@ -22,7 +22,7 @@ export default function Home() {
       <CarouselCards items={courseItems} />
       <FeaturesSection />
       <Testimonial />
-      <Newsletter />
+      {/* <Newsletter /> */}
       <Footer />
     </>
   )
