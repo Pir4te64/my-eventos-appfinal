@@ -1,4 +1,4 @@
-import { FaUser, FaEnvelope, FaCommentDots } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaCommentDots, FaWhatsapp } from 'react-icons/fa';
 
 export default function Contacto() {
   return (
@@ -21,7 +21,31 @@ export default function Contacto() {
           </div>
           <button type="submit" className="w-full py-2 bg-green-900 hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:scale-105 hover:shadow-lg animate-fadeInUp delay-200">Enviar Mensaje</button>
         </form>
+        {/* WhatsApp contacto */}
+        <div className="mt-8 flex flex-col items-center">
+          <a
+            href="https://wa.me/5493764578395"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-green-800 font-semibold text-base hover:text-green-900 transition mt-2"
+          >
+            <FaWhatsapp className="text-2xl" />
+            +54 9 376 457-8395
+          </a>
+          <span className="text-xs text-green-700 mt-1">Escríbenos por WhatsApp</span>
+        </div>
       </div>
+      {/* Botón flotante de WhatsApp */}
+      <a
+        href="https://wa.me/5493764578395"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed z-50 bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-all duration-300 animate-fadeInUp"
+        style={{ boxShadow: '0 4px 24px 0 rgba(34,197,94,0.25)' }}
+        aria-label="WhatsApp"
+      >
+        <FaWhatsapp className="text-3xl" />
+      </a>
       <style>{`
         @keyframes fadeInUp {
           0% { opacity: 0; transform: translateY(40px); }

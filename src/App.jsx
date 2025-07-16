@@ -14,6 +14,7 @@ import Seccion8 from './pages/Seccion8'
 import Seccion9 from './pages/Seccion9'
 import Contacto from './pages/Contacto'
 import ScrollToTop from './components/ScrollToTop'
+import { FaWhatsapp } from 'react-icons/fa';
 
 function App() {
   return (
@@ -35,6 +36,26 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
       </Routes>
       </main>
+      {/* Botón flotante de WhatsApp global */}
+      <a
+        href="https://wa.me/5493764578395"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed z-50 bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-all duration-300 animate-fadeInUp"
+        style={{ boxShadow: '0 4px 24px 0 rgba(34,197,94,0.25)' }}
+        aria-label="WhatsApp"
+      >
+        <FaWhatsapp className="text-3xl" />
+      </a>
+      <style>{`
+        @keyframes fadeInUp {
+          0% { opacity: 0; transform: translateY(40px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+          animation: fadeInUp 0.8s cubic-bezier(.4,0,.2,1) both;
+        }
+      `}</style>
     </div>
   )
 }

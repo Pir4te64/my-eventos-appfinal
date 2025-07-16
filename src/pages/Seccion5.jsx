@@ -115,7 +115,7 @@ export default function Seccion5() {
                         {sede.email && <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Email:</span> <a href={`mailto:${sede.email}`} className="text-green-800 underline font-semibold">{sede.email}</a></div>}
                         {sede.web && <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Web:</span> <a href={sede.web.startsWith('http') ? sede.web : `https://${sede.web}`} target="_blank" rel="noopener noreferrer" className="text-green-800 underline font-semibold">{sede.web.replace('https://','').replace('http://','')}</a></div>}
                         {sede.redes && <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Redes Sociales:</span> <span className="text-green-800">{sede.redes}</span></div>}
-                      </div>
+          </div>
                     )}
                   </div>
                 </div>
