@@ -97,34 +97,42 @@ export default function Seccion8() {
 
         {/* Listado de Socios Activos */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+          <h2 className="text-3xl font-bold text-center text-green-800 mb-8 tracking-widest uppercase">
             SOCIOS ACTIVOS, ACTUALIZADO ABRIL 2025
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {bureau.map((socio, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-xl shadow-lg border border-purple-200 overflow-hidden"
-              >
-                <button
-                  className={`w-full flex justify-between items-center px-6 py-4 text-lg font-semibold text-green-800 focus:outline-none transition-colors ${openIndex === i ? 'bg-purple-50' : 'bg-white'}`}
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  aria-expanded={openIndex === i}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {bureau.map((socio, i) => {
+              const open = openIndex === i;
+              return (
+                <div
+                  key={i}
+                  className={`transition-all duration-500 rounded-2xl overflow-hidden shadow-md border-2 ${open ? 'border-green-600 bg-green-50 scale-[1.03]' : 'border-gray-200 bg-white hover:scale-[1.01]'} min-h-[100px] flex flex-col items-center justify-center`}
+                  style={{ minHeight: open ? 150 : 100 }}
                 >
-                  <div>
-                    <span className="block text-xl font-bold text-green-800">{socio.nombre}</span>
-                    <span className="block text-sm text-gray-600">{socio.rubro}</span>
+                  {/* Botón central */}
+                  <button
+                    className={`w-full flex flex-col items-center justify-center px-6 py-5 focus:outline-none transition-colors ${open ? 'bg-transparent' : 'bg-white'} select-none`}
+                    style={{ minHeight: 60 }}
+                    onClick={() => setOpenIndex(open ? null : i)}
+                    aria-expanded={open}
+                  >
+                    <span className="block text-base font-bold text-green-800 text-center mb-1 tracking-wide uppercase">{socio.nombre}</span>
+                    <span className="block text-sm text-green-700 text-center font-medium mb-1">{socio.rubro}</span>
+                    <span className={`mt-1 text-lg transition-transform duration-300 ${open ? 'rotate-180 text-green-700' : 'text-green-500 group-hover:text-green-700'}`}>▼</span>
+                  </button>
+                  {/* Información desplegable solo debajo */}
+                  <div className={`transition-all duration-500 w-full ${open ? 'opacity-100 max-h-40 py-2' : 'opacity-0 max-h-0 py-0'} flex flex-col items-center justify-center`}
+                    style={{ minHeight: open ? 30 : 0 }}>
+                    {open && (
+                      <div className="w-full px-6 space-y-1">
+                        <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Persona de Contacto:</span> {socio.contacto}</div>
+                        <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Mail de Contacto:</span> <a href={`mailto:${socio.email}`} className="text-green-800 underline font-semibold">{socio.email}</a></div>
+                      </div>
+                    )}
                   </div>
-                  <span className={`ml-2 text-2xl transition-transform ${openIndex === i ? 'rotate-90' : ''}`}>▶</span>
-                </button>
-                {openIndex === i && (
-                  <div className="px-6 pb-4 pt-2 text-gray-700 bg-purple-50 animate-fadeIn">
-                    <div className="mb-1"><b>Persona de Contacto:</b> {socio.contacto}</div>
-                    <div className="mb-1"><b>Mail de Contacto:</b> <a href={`mailto:${socio.email}`} className="text-green-700 underline">{socio.email}</a></div>
-                  </div>
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
 

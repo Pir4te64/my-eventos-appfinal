@@ -54,7 +54,7 @@ export default function Seccion7() {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Catálogo de Sedes Académicas</h2>
+        <h2 className="text-3xl font-bold text-center text-green-800 mb-8 tracking-widest uppercase">Catálogo de Sedes Académicas</h2>
         <div className="mb-6 flex justify-center">
           <input
             type="text"
@@ -64,39 +64,45 @@ export default function Seccion7() {
             onChange={e => setSearch(e.target.value)}
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {sedesFiltradas.length === 0 ? (
             <div className="col-span-full text-center py-8 text-gray-400">No se encontraron sedes académicas.</div>
           ) : (
-            sedesFiltradas.map((sede, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.4, delay: i * 0.04 }}
-                className="bg-white rounded-xl shadow border border-gray-100 overflow-hidden"
-              >
-                <button
-                  className={`w-full flex justify-between items-center px-6 py-4 text-lg font-semibold text-green-800 focus:outline-none transition-colors ${openIndex === i ? 'bg-green-50' : 'bg-white'}`}
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  aria-expanded={openIndex === i}
+            sedesFiltradas.map((sede, i) => {
+              const open = openIndex === i;
+              return (
+                <div
+                  key={i}
+                  className={`transition-all duration-500 rounded-2xl overflow-hidden shadow-md border-2 ${open ? 'border-green-600 bg-green-50 scale-[1.03]' : 'border-gray-200 bg-white hover:scale-[1.01]'} min-h-[100px] flex flex-col items-center justify-center`}
+                  style={{ minHeight: open ? 150 : 100 }}
                 >
-                  <span>{sede.nombre}</span>
-                  <span className={`ml-2 transition-transform ${openIndex === i ? 'rotate-90' : ''}`}>▶</span>
-                </button>
-                {openIndex === i && (
-                  <div className="px-6 pb-4 pt-2 text-gray-700 animate-fadeIn">
-                    {sede.tipo && <div className="mb-1"><b>Tipo de Locación:</b> {sede.tipo}</div>}
-                    <div className="mb-1"><b>Dirección:</b> {sede.direccion}</div>
-                    {sede.telefono && <div className="mb-1"><b>Teléfono:</b> {sede.telefono}</div>}
-                    {sede.email && <div className="mb-1"><b>Email:</b> <a href={`mailto:${sede.email}`} className="text-green-700 underline">{sede.email}</a></div>}
-                    {sede.web && <div className="mb-1"><b>Web:</b> <a href={sede.web.startsWith('http') ? sede.web : `https://${sede.web}`} target="_blank" rel="noopener noreferrer" className="text-green-700 underline">{sede.web.replace('https://','').replace('http://','')}</a></div>}
-                    {sede.redes && <div className="mb-1"><b>Redes Sociales:</b> <span className="whitespace-pre-line">{sede.redes}</span></div>}
+                  {/* Botón central */}
+                  <button
+                    className={`w-full flex flex-col items-center justify-center px-6 py-5 focus:outline-none transition-colors ${open ? 'bg-transparent' : 'bg-white'} select-none`}
+                    style={{ minHeight: 60 }}
+                    onClick={() => setOpenIndex(open ? null : i)}
+                    aria-expanded={open}
+                  >
+                    <span className="block text-base font-bold text-green-800 text-center mb-1 tracking-wide uppercase">{sede.nombre}</span>
+                    <span className="block text-sm text-green-700 text-center font-medium mb-1">{sede.tipo ? sede.tipo : sede.direccion}</span>
+                    <span className={`mt-1 text-lg transition-transform duration-300 ${open ? 'rotate-180 text-green-700' : 'text-green-500 group-hover:text-green-700'}`}>▼</span>
+                  </button>
+                  {/* Información desplegable solo debajo */}
+                  <div className={`transition-all duration-500 w-full ${open ? 'opacity-100 max-h-40 py-2' : 'opacity-0 max-h-0 py-0'} flex flex-col items-center justify-center`}
+                    style={{ minHeight: open ? 30 : 0 }}>
+                    {open && (
+                      <div className="w-full px-6 space-y-1">
+                        {sede.direccion && <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Dirección:</span> {sede.direccion}</div>}
+                        {sede.telefono && <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Teléfono:</span> {sede.telefono}</div>}
+                        {sede.email && <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Email:</span> <a href={`mailto:${sede.email}`} className="text-green-800 underline font-semibold">{sede.email}</a></div>}
+                        {sede.web && <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Web:</span> <a href={sede.web.startsWith('http') ? sede.web : `https://${sede.web}`} target="_blank" rel="noopener noreferrer" className="text-green-800 underline font-semibold">{sede.web.replace('https://','').replace('http://','')}</a></div>}
+                        {sede.redes && <div className="text-sm text-green-900 font-medium"><span className="font-semibold">Redes Sociales:</span> <span className="text-green-800">{sede.redes}</span></div>}
+                      </div>
+                    )}
                   </div>
-                )}
-              </motion.div>
-            ))
+                </div>
+              );
+            })
           )}
         </div>
       </motion.section>
