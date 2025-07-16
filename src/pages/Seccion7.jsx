@@ -1,8 +1,43 @@
-import React from 'react'
+import React, { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
+
+const SEDES = [
+  { nombre: 'UNaM - Universidad Nacional de Misiones', tipo: '', direccion: 'Avenida Fernando Elías Llamosas 9458', telefono: '3764 448-0200 Int.: 283 - 284.', email: 'informes@fce.unam.edu.ar', web: 'https://www.unam.edu.ar/', redes: 'Instagram: @unam_misiones' },
+  { nombre: 'UNaM - Facultad Ciencias Económicas', tipo: 'Aula Magna', direccion: 'Avenida Fernando Elías Llamosas 9458', telefono: '376 4480200', email: 'informes@fce.unam.edu.ar', web: 'https://www.fce.unam.edu.ar/', redes: 'Instagram: @fceunam Facebook: @FacultaddeCienciasEconómicas' },
+  { nombre: 'UNaM - Facultad de Ciencias Exactas Químicas y Naturales', tipo: 'Aula Magna', direccion: 'Felix de Azara 1552', telefono: '376-4443509', email: 'infoexactas@fceqyn.unam.edu.ar', web: 'https://www.fceqyn.unam.edu.ar/', redes: 'Instagram: @exactas.unam Facebook: Exactas.UNaM' },
+  { nombre: 'UNaM - Facultad de Ciencias Exactas Químicas y Naturales - Escuela de Enfermería', tipo: 'Salón Auditorio Lic Martha Kühle', direccion: 'López Torres N°3415', telefono: '(+54) 0376 – 4428177 / 4440961', email: 'info.escenf@unam.edu.ar', web: 'www.escenf.unam.edu.ar', redes: 'Instagram: @escuelaenfermeriaunam.oficial Facebook: @Escuela de Enfermeria' },
+  { nombre: 'UNaM - Facultad de Humanidades y Ciencias Sociales', tipo: 'Aula Magna', direccion: 'Tucuman 1946', telefono: '376-4434344', email: 'dic@fhycs.unam.edu.ar', web: 'https://www.fhycs.unam.edu.ar/portada/', redes: 'Instagram: @boletinfhycs Facebook: @FacultaddeHumanidadesyCienciasSociales' },
+  { nombre: 'UNaM - Facultad de Humanidades y Ciencias Sociales', tipo: 'Aula Magna - Edificio Juan Figueredo', direccion: 'Colón 2318', telefono: '376-4434344', email: 'dic@fhycs.unam.edu.ar', web: 'https://www.fhycs.unam.edu.ar/portada/', redes: 'Instagram: @boletinfhycs Facebook: @FacultaddeHumanidadesyCienciasSociales' },
+  { nombre: 'Universidad Siglo 21 - INCADE -  Instituto de Capacitación y Desarrollo Empresarial', tipo: '', direccion: 'San Lorenzo 1432', telefono: '3764 85-17', email: 'ues21misiones@gmail.com', web: 'https://21.edu.ar/content/incade-posadas', redes: 'Instagram: @siglo21.incade Facebook: Siglo 21 CAU incade' },
+  { nombre: 'Universidad de las Fuerzas de Seguridad Provincia de Misiones - Sede Policía', tipo: '', direccion: 'Puerto Argentino y Golfo San Carlos, Miguel Lanús', telefono: '', email: 'iuspmisiones@gmail.com / secretariageneral.ufspm@gmail.com', web: 'https://www.ufspm.com.ar/Sede_Policia/', redes: 'Instagram: @ufspm.sedepoliciaok Facebook: @UniversidaddelasFuerzasdeSeguridadProvinciaMisiones' },
+  { nombre: 'UCAMI - Universidad Católica de las Misiones', tipo: 'SUM', direccion: 'Avenida Jauretche 1036', telefono: '054 (376) 4463718/ 4476163/4469697', email: 'info@ucami.edu.ar', web: 'https://www.ucami.edu.ar/', redes: 'Instagram: @ucami_oficial Facebook: @UniversidadCatólicadelasMisiones' },
+  { nombre: 'Universidad Gastón Dachary', tipo: 'Salón Auditorio - Aula Magna', direccion: 'Salta esquina Colón', telefono: '054 (0376) 4438677 / WhatsApp: 054 9 (376) 5180053', email: '', web: 'https://ugd.edu.ar/es/', redes: 'Instagram: @ugdnoticias Facebook: @UniversidadGastonDachary X: @ugdnoticias LinkedIn: @universidad-gast-n-dachary' },
+  { nombre: 'Universidad Popular de Misiones.', tipo: '', direccion: 'Av. República Oriental del Uruguay 3066', telefono: '0376 443-9537 / 0376 15-520-0660', email: '', web: '', redes: 'Instagram: @up.misiones  Facebook: @UPMisiones' },
+  { nombre: 'UCP - Universidad de la Cuenca del Plata', tipo: 'Salón Auditorio', direccion: 'Barrufaldi N°2364', telefono: '376 444-1331', email: 'ingresoposadas@ucp.edu.ar', web: 'https://www.ucp.edu.ar/', redes: 'Instagram: @ucpposadas Facebook: @UCPSedePosadas X: @cuencaposadasok' },
+  { nombre: 'UCSF - Universidad Católica de Santa Fe', tipo: '', direccion: 'Rademacher 3943', telefono: '0376-4423388', email: 'posadas@ucsf.edu.ar', web: 'https://www.ucsf.edu.ar/', redes: 'Instagram: @ucsfoficial Facebook: @ucsfoficial LinkedIn: @ucsfoficial' },
+  { nombre: 'Instituto Hernando Arias de Saavedra', tipo: '', direccion: 'Av. Mitre 1518', telefono: '(03765) 175679', email: 'informes@ariasdesaavedra.edu.ar', web: 'https://ariasdesaavedra.edu.ar/', redes: 'Instagram: @institutosaavedra Facebook: @InstitutoSaavedra' },
+  { nombre: 'ISET - Instituto Superior de Estudios Técnicos', tipo: '', direccion: 'Calle Catamarca 1550', telefono: '376 4429514  4440096', email: 'iset@leoniset.edu.ar', web: 'https://www.leoniset.edu.ar/', redes: 'Instagram: @leoniset  Facebook: @leoniset  Linkedin:@leoniset' },
+  { nombre: 'IPAC - Instituto Privado de Alta Capacitación', tipo: '', direccion: 'San Lorenzo 2236', telefono: '376 5015098 - 3751 635463', email: 'info@dealtacapacitacion.edu.ar', web: 'https://dealtacapacitacion.edu.ar/', redes: 'Instagram: @ipacinstitutodecapacitacion Facebook: @IpacInstitutodeCapacitación' },
+  { nombre: 'IPESMI - Instituto Privado de Estudios Superiores de Misiones', tipo: '', direccion: 'Salta 1968', telefono: '(03764) 432828', email: 'informes@ipesmi.edu.ar', web: 'https://ipesmi.edu.ar/', redes: 'Instagram: @ipesmisuperior  Facebook: @ipesmisuperior  X: @IPESMI' },
+  { nombre: 'Instituto Antonio Ruiz de Montoya', tipo: 'Salón Auditorium:  560', direccion: 'Ayacucho 1962', telefono: '376-4440055', email: 'auditorium_montoya@isparm.edu.ar', web: 'https://www.isparm.edu.ar/', redes: 'Instagram: @auditorium_montoya Facebook: @AuditoriumMontoya' },
+  // ... puedes agregar más si lo deseas
+];
 
 export default function Seccion7() {
+  const [search, setSearch] = useState('');
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const sedesFiltradas = useMemo(() => {
+    if (!search) return SEDES;
+    return SEDES.filter(sede =>
+      Object.values(sede).some(val =>
+        val && val.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search]);
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50 font-source">
       {/* Hero Section */}
       <div style={{ backgroundColor: '#00723e' }} className="relative h-96 flex items-center justify-center">
         <div className="text-center">
@@ -11,192 +46,60 @@ export default function Seccion7() {
         </div>
       </div>
 
-      {/* Contenido Principal */}
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Introducción */}
-        <div className="mb-16">
-          <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-white text-2xl">🎓</span>
-            </div>
-            <h2 className="text-4xl font-bold text-gray-800 mb-6">
-              Posadas Universitaria
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Posadas es el hogar de universidades de prestigio y una amplia gama de institutos superiores, 
-              lo que atrae a una gran población estudiantil y académica, que representa más del 10% de su 
-              población total de habitantes.
-            </p>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto mt-4">
-              Así, Posadas supera la media nacional en términos de densidad estudiantil.
-            </p>
-          </div>
-
-          {/* Estadísticas Académicas */}
-          <div className="bg-blue-50 rounded-xl p-8 mb-12">
-            <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">
-              Infraestructura Académica
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-3xl">🏛️</span>
-                </div>
-                <div className="text-4xl font-bold text-blue-600 mb-2">7</div>
-                <div className="text-gray-600">Universidades</div>
-              </div>
-              <div className="text-center">
-                <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-3xl">📚</span>
-                </div>
-                <div className="text-4xl font-bold text-blue-600 mb-2">55</div>
-                <div className="text-gray-600">Institutos Superiores</div>
-              </div>
-              <div className="text-center">
-                <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-3xl">🎯</span>
-                </div>
-                <div className="text-4xl font-bold text-blue-600 mb-2">300</div>
-                <div className="text-gray-600">Carreras Disponibles</div>
-              </div>
-            </div>
-            <div className="text-center mt-6">
-              <p className="text-gray-600">
-                Año a año se van incorporando nuevas opciones académicas en la Ciudad.
-              </p>
-            </div>
-          </div>
-
-          {/* Eventos Académicos */}
-          <div className="bg-white rounded-xl shadow-lg p-8 mb-12">
-            <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">
-              Referente en Eventos Académicos
-            </h3>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <p className="text-lg text-gray-600 mb-6">
-                  Posadas se ha consolidado como un referente nacional e internacional en la organización 
-                  de eventos académicos de alto nivel. Gracias a su infraestructura moderna, la calidad 
-                  de sus instituciones educativas y su comunidad intelectual, esta ciudad ofrece un entorno 
-                  ideal para el intercambio de conocimientos, el desarrollo científico y la innovación.
-                </p>
-                <p className="text-lg text-gray-600">
-                  Cada año, alberga congresos, simposios, seminarios y ferias científicas que reúnen a 
-                  investigadores, profesionales y estudiantes de diversas disciplinas.
-                </p>
-              </div>
-              <div className="bg-blue-50 rounded-lg p-6">
-                <h4 className="text-xl font-bold text-gray-800 mb-4">Tipos de Eventos</h4>
-                <div className="space-y-3">
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Congresos Internacionales</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Simposios Científicos</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Seminarios Académicos</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Ferias Científicas</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Colaboración Institucional */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 mb-12">
-            <h3 className="text-2xl font-bold text-center text-gray-800 mb-6">
-              Colaboración Institucional
-            </h3>
-            <p className="text-lg text-gray-600 text-center max-w-4xl mx-auto">
-              Tanto las universidades, centros educativos y de investigación, espacios culturales trabajan 
-              en conjunto para promover una agenda académica, fortaleciendo así el prestigio educativo de la ciudad.
-            </p>
-          </div>
+      {/* Catálogo de Sedes Académicas */}
+      <motion.section
+        className="max-w-7xl mx-auto px-4 py-16"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Catálogo de Sedes Académicas</h2>
+        <div className="mb-6 flex justify-center">
+          <input
+            type="text"
+            placeholder="Buscar sede, dirección, contacto..."
+            className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-700"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
         </div>
-
-        {/* Listado de Sedes Académicas */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-            Listado de Sedes Académicas para Eventos
-          </h2>
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <div className="text-center text-gray-500 mb-4">
-              <div className="text-4xl mb-2">📋</div>
-              <p></p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6 mt-8">
-              <div className="text-center p-6 border border-gray-200 rounded-lg">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">🏛️</span>
-                </div>
-                <h3 className="font-bold text-gray-800">Universidades</h3>
-                <p className="text-gray-600 text-sm">7 universidades con salones para eventos</p>
-              </div>
-              <div className="text-center p-6 border border-gray-200 rounded-lg">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">📚</span>
-                </div>
-                <h3 className="font-bold text-gray-800">Institutos Superiores</h3>
-                <p className="text-gray-600 text-sm">55 institutos con espacios académicos</p>
-              </div>
-              <div className="text-center p-6 border border-gray-200 rounded-lg">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">🔬</span>
-                </div>
-                <h3 className="font-bold text-gray-800">Centros de Investigación</h3>
-                <p className="text-gray-600 text-sm">Espacios para eventos científicos</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Agencia Universitaria Posadas */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-8 text-center text-white">
-          <h2 className="text-3xl font-bold mb-6">
-            Agencia Universitaria Posadas
-          </h2>
-          <p className="text-xl mb-8">
-            Conectamos el mundo académico con las mejores oportunidades de eventos
-          </p>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">Instagram</h3>
-              <a 
-                href="https://www.instagram.com/agenciauni.posadas/?hl=es" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {sedesFiltradas.length === 0 ? (
+            <div className="col-span-full text-center py-8 text-gray-400">No se encontraron sedes académicas.</div>
+          ) : (
+            sedesFiltradas.map((sede, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.4, delay: i * 0.04 }}
+                className="bg-white rounded-xl shadow border border-gray-100 overflow-hidden"
               >
-                <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                Seguir en Instagram
-              </a>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Facebook</h3>
-              <a 
-                href="https://www.facebook.com/agenciauni.posadas/?locale=es_LA" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-              >
-                <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-                Seguir en Facebook
-              </a>
-            </div>
-          </div>
+                <button
+                  className={`w-full flex justify-between items-center px-6 py-4 text-lg font-semibold text-green-800 focus:outline-none transition-colors ${openIndex === i ? 'bg-green-50' : 'bg-white'}`}
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  aria-expanded={openIndex === i}
+                >
+                  <span>{sede.nombre}</span>
+                  <span className={`ml-2 transition-transform ${openIndex === i ? 'rotate-90' : ''}`}>▶</span>
+                </button>
+                {openIndex === i && (
+                  <div className="px-6 pb-4 pt-2 text-gray-700 animate-fadeIn">
+                    {sede.tipo && <div className="mb-1"><b>Tipo de Locación:</b> {sede.tipo}</div>}
+                    <div className="mb-1"><b>Dirección:</b> {sede.direccion}</div>
+                    {sede.telefono && <div className="mb-1"><b>Teléfono:</b> {sede.telefono}</div>}
+                    {sede.email && <div className="mb-1"><b>Email:</b> <a href={`mailto:${sede.email}`} className="text-green-700 underline">{sede.email}</a></div>}
+                    {sede.web && <div className="mb-1"><b>Web:</b> <a href={sede.web.startsWith('http') ? sede.web : `https://${sede.web}`} target="_blank" rel="noopener noreferrer" className="text-green-700 underline">{sede.web.replace('https://','').replace('http://','')}</a></div>}
+                    {sede.redes && <div className="mb-1"><b>Redes Sociales:</b> <span className="whitespace-pre-line">{sede.redes}</span></div>}
+                  </div>
+                )}
+              </motion.div>
+            ))
+          )}
         </div>
-      </div>
+      </motion.section>
     </div>
-  )
+  );
 } 

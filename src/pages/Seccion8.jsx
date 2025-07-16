@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react';
+import bureau from '../data/bureau';
 
 export default function Seccion8() {
+  const [openIndex, setOpenIndex] = useState(null);
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -96,36 +98,33 @@ export default function Seccion8() {
         {/* Listado de Socios Activos */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-            Listado de Socios Activos
+            SOCIOS ACTIVOS, ACTUALIZADO ABRIL 2025
           </h2>
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <div className="text-center text-gray-500 mb-4">
-              <div className="text-4xl mb-2">📋</div>
-              <p>Información detallada disponible en el Excel de Socios Activos</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6 mt-8">
-              <div className="text-center p-6 border border-gray-200 rounded-lg">
-                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">🏨</span>
-                </div>
-                <h3 className="font-bold text-gray-800">Hoteles</h3>
-                <p className="text-gray-600 text-sm">Alojamiento de calidad para eventos</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {bureau.map((socio, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-xl shadow-lg border border-purple-200 overflow-hidden"
+              >
+                <button
+                  className={`w-full flex justify-between items-center px-6 py-4 text-lg font-semibold text-green-800 focus:outline-none transition-colors ${openIndex === i ? 'bg-purple-50' : 'bg-white'}`}
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  aria-expanded={openIndex === i}
+                >
+                  <div>
+                    <span className="block text-xl font-bold text-green-800">{socio.nombre}</span>
+                    <span className="block text-sm text-gray-600">{socio.rubro}</span>
+                  </div>
+                  <span className={`ml-2 text-2xl transition-transform ${openIndex === i ? 'rotate-90' : ''}`}>▶</span>
+                </button>
+                {openIndex === i && (
+                  <div className="px-6 pb-4 pt-2 text-gray-700 bg-purple-50 animate-fadeIn">
+                    <div className="mb-1"><b>Persona de Contacto:</b> {socio.contacto}</div>
+                    <div className="mb-1"><b>Mail de Contacto:</b> <a href={`mailto:${socio.email}`} className="text-green-700 underline">{socio.email}</a></div>
+                  </div>
+                )}
               </div>
-              <div className="text-center p-6 border border-gray-200 rounded-lg">
-                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">🏛️</span>
-                </div>
-                <h3 className="font-bold text-gray-800">Centros de Convenciones</h3>
-                <p className="text-gray-600 text-sm">Espacios profesionales para eventos</p>
-              </div>
-              <div className="text-center p-6 border border-gray-200 rounded-lg">
-                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">🍽️</span>
-                </div>
-                <h3 className="font-bold text-gray-800">Servicios Gastronómicos</h3>
-                <p className="text-gray-600 text-sm">Catering y servicios de alimentación</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 

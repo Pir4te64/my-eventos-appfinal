@@ -1,5 +1,14 @@
 // src/components/Newsletter.jsx
 export default function Newsletter() {
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const nombre = e.target[0].value;
+      const email = e.target[1].value;
+      const mensaje = e.target[2].value;
+      const subject = encodeURIComponent('Consulta desde la web');
+      const body = encodeURIComponent(`Nombre: ${nombre}\nEmail: ${email}\nMensaje: ${mensaje}`);
+      window.location.href = `mailto:mice@posadas.gov.ar?subject=${subject}&body=${body}`;
+    };
     return (
       <section className="py-12 bg-green-50">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-4 font-source">
@@ -7,7 +16,7 @@ export default function Newsletter() {
           <p className="text-gray-600">
             Completa el formulario y nos pondremos en contacto contigo lo antes posible.
           </p>
-          <form className="flex flex-col sm:flex-row justify-center gap-2" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex flex-col sm:flex-row justify-center gap-2" onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Nombre completo"

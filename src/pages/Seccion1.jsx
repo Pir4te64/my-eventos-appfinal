@@ -1,15 +1,17 @@
 // src/pages/Seccion1.jsx
 import React, { useState } from 'react'
 import { FaPlane, FaHotel, FaUsers, FaCalendarAlt, FaUniversity, FaBuilding, FaUtensils, FaTheaterMasks, FaEnvelope } from 'react-icons/fa'
+import CountUp from 'react-countup'
+import { motion } from 'framer-motion'
 
 export default function Seccion1() {
   const stats = [
-    { icon: <FaHotel className="text-4xl" />, value: '3.200+', label: 'Plazas Hoteleras' },
-    { icon: <FaUsers className="text-4xl" />, value: '400.000+', label: 'Turistas Anuales' },
-    { icon: <FaCalendarAlt className="text-4xl" />, value: '200+', label: 'Eventos Corporativos' },
-    { icon: <FaUniversity className="text-4xl" />, value: '7', label: 'Universidades' },
-    { icon: <FaBuilding className="text-4xl" />, value: '45+', label: 'Sedes Deportivas' },
-    { icon: <FaUtensils className="text-4xl" />, value: '100+', label: 'Restaurantes' }
+    { icon: <FaHotel className="text-4xl" />, value: 3200, label: 'Plazas Hoteleras', plus: true, decimal: true },
+    { icon: <FaUsers className="text-4xl" />, value: 400000, label: 'Turistas Anuales', plus: true, decimal: true },
+    { icon: <FaCalendarAlt className="text-4xl" />, value: 200, label: 'Eventos Corporativos', plus: true },
+    { icon: <FaUniversity className="text-4xl" />, value: 7, label: 'Universidades', plus: false },
+    { icon: <FaBuilding className="text-4xl" />, value: 45, label: 'Sedes Deportivas', plus: true },
+    { icon: <FaUtensils className="text-4xl" />, value: 100, label: 'Restaurantes', plus: true },
   ]
 
   const features = [
@@ -87,7 +89,17 @@ export default function Seccion1() {
           {stats.map((stat, index) => (
             <div key={index} className="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform duration-300">
               <div className="text-green-800 mb-4 flex justify-center">{stat.icon}</div>
-              <div className="text-3xl font-bold text-gray-800 mb-2">{stat.value}</div>
+              <div className="text-3xl font-bold text-gray-800 mb-2 flex items-center justify-center">
+                {stat.plus && <span className="text-green-800 mr-1">+</span>}
+                <CountUp
+                  end={stat.value}
+                  duration={1.5}
+                  separator={stat.decimal ? '.' : ''}
+                  decimals={0}
+                  enableScrollSpy
+                  scrollSpyOnce
+                />
+              </div>
               <div className="text-sm text-gray-600">{stat.label}</div>
             </div>
           ))}
@@ -98,11 +110,18 @@ export default function Seccion1() {
       <section className="max-w-7xl mx-auto mt-16 px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+            <motion.div
+              key={index}
+              className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: index * 0.15 }}
+            >
               <div className="text-green-800 mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -114,14 +133,27 @@ export default function Seccion1() {
           <p className="text-gray-700 mb-6">
             Contamos con el respaldo del "Posadas Bureau Congresos y Convenciones" para brindarte el mejor asesoramiento en la organización de tu evento.
           </p>
-          <a 
-            href="http://www.posadasbureau.com.ar/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-block bg-green-800 text-white px-6 py-3 rounded-full hover:bg-green-700 transition-colors"
-          >
-            Visitar Posadas Bureau
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a 
+              href="https://www.instagram.com/posadasbureau/?hl=es" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block bg-green-800 text-white px-6 py-3 rounded-full hover:bg-green-700 transition-colors text-center w-full sm:w-auto"
+            >
+              Instagram Posadas Bureau
+            </a>
+            <a 
+              href="https://www.facebook.com/posadascongresosyconvencionesbureau/?locale=es_LA" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block bg-green-800 text-white px-6 py-3 rounded-full hover:bg-green-700 transition-colors text-center w-full sm:w-auto"
+            >
+              Facebook Posadas Bureau
+            </a>
+            <span className="inline-block bg-green-900 text-white px-6 py-3 rounded-full font-semibold text-center w-full sm:w-auto cursor-default">
+              Posadas Congresos y Convenciones Bureau
+            </span>
+          </div>
         </div>
       </section>
 
