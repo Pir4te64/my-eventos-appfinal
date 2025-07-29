@@ -64,8 +64,10 @@ export default function Seccion5() {
   return (
     <div className="min-h-screen bg-gray-50 font-source">
       {/* Hero Section */}
-      <div style={{ backgroundColor: '#00723e' }} className="relative h-96 flex items-center justify-center">
-        <div className="text-center">
+      <div className="relative h-96 flex items-center justify-center overflow-hidden">
+        <img src="/Deporte.png" alt="Banner Deportivo" className="absolute inset-0 w-full h-full object-cover hidden md:block" />
+        <img src="/DeporteMobile.png" alt="Banner Deportivo" className="absolute inset-0 w-full h-full object-cover md:hidden" />
+        <div className="relative z-10 text-center">
           <h1 className="text-5xl font-bold text-white mb-4">Posadas Deportiva</h1>
           <p className="text-xl text-white max-w-2xl mx-auto">La ciudad como sede de grandes eventos deportivos nacionales e internacionales.</p>
         </div>

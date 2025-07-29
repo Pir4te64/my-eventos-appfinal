@@ -16,7 +16,8 @@ export default function Seccion2() {
     <div className="font-source">
       {/* Hero banner */}
       <section className="relative rounded-3xl max-w-7xl mx-auto mt-8 h-[400px] overflow-hidden">
-        <img src="/fondo2.png" alt="Banner" className="absolute inset-0 w-full h-full object-cover opacity-90" />
+        <img src="/Centro.png" alt="Banner" className="absolute inset-0 w-full h-full object-cover opacity-90 hidden md:block" />
+        <img src="/CentroMobile.png" alt="Banner" className="absolute inset-0 w-full h-full object-cover opacity-90 md:hidden" />
         <div className="relative z-10 flex flex-col justify-center items-center h-full px-6 text-center text-white">
           <span className="text-xs uppercase tracking-widest">Parque del Conocimiento</span>
           <h1 className="mt-4 text-5xl font-bevietnam">Parque del Conocimiento</h1>
