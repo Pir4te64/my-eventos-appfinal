@@ -1,12 +1,61 @@
-# React + Vite
+# My Eventos App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web para eventos MICE (Meetings, Incentives, Conferences, Exhibitions) en Posadas, Misiones.
 
-Currently, two official plugins are available:
+## Estructura de Rutas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+La aplicación ahora utiliza el prefijo `/mice` para todas las rutas:
 
-## Expanding the ESLint configuration
+- `/mice` - Página de inicio
+- `/mice/seccion1` - ¿Nos Reunimos en Posadas?
+- `/mice/seccion2` - Parque del Conocimiento y Centro de Convenciones
+- `/mice/seccion3` - Agenda MICE y Eventos Deportivos
+- `/mice/seccion4` - Catálogo de Locaciones para eventos
+- `/mice/seccion5` - Posadas Deportiva
+- `/mice/seccion6` - Posadas Sustentable
+- `/mice/seccion7` - Posadas Universitaria
+- `/mice/seccion8` - Posadas Congresos y Convenciones Bureau
+- `/mice/seccion9` - Conectividad
+- `/mice/contacto` - Página de contacto
+- `/mice/eventos/:id` - Páginas de eventos individuales
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Características
+
+- Diseño responsive con Tailwind CSS
+- Navegación con React Router
+- Componentes modulares
+- Optimizado para SEO
+- Botón flotante de WhatsApp
+- Carousel de imágenes con Swiper
+
+## Tecnologías
+
+- React 18
+- Vite
+- React Router DOM
+- Tailwind CSS
+- Headless UI
+- React Icons
+- Swiper
+
+## Instalación
+
+```bash
+npm install
+```
+
+## Desarrollo
+
+```bash
+npm run dev
+```
+
+## Construcción
+
+```bash
+npm run build
+```
+
+## Despliegue
+
+La aplicación está configurada para desplegarse en Vercel con soporte para rutas de React Router.

@@ -1,6 +1,6 @@
 // src/App.jsx
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import NavBarEventos from './components/Navbar'
 import Home from './pages/Home'
 import Seccion1 from './pages/Seccion1'
@@ -23,17 +23,24 @@ function App() {
       <NavBarEventos />
       <main className="container mx-auto px-4 py-8">
       <Routes>
-        <Route path="/" element={<Home />} />
-          <Route path="/seccion1" element={<Seccion1 />} />
-          <Route path="/seccion2" element={<Seccion2 />} />
-          <Route path="/seccion3" element={<Seccion3 />} />
-          <Route path="/seccion4" element={<Seccion4 />} />
-          <Route path="/seccion5" element={<Seccion5 />} />
-          <Route path="/seccion6" element={<Seccion6 />} />
-          <Route path="/seccion7" element={<Seccion7 />} />
-          <Route path="/seccion8" element={<Seccion8 />} />
-          <Route path="/seccion9" element={<Seccion9 />} />
-        <Route path="/contacto" element={<Contacto />} />
+        {/* Redirigir la ruta raíz a /mice */}
+        <Route path="/" element={<Navigate to="/mice" replace />} />
+        
+        {/* Todas las rutas bajo /mice */}
+        <Route path="/mice" element={<Home />} />
+        <Route path="/mice/seccion1" element={<Seccion1 />} />
+        <Route path="/mice/seccion2" element={<Seccion2 />} />
+        <Route path="/mice/seccion3" element={<Seccion3 />} />
+        <Route path="/mice/seccion4" element={<Seccion4 />} />
+        <Route path="/mice/seccion5" element={<Seccion5 />} />
+        <Route path="/mice/seccion6" element={<Seccion6 />} />
+        <Route path="/mice/seccion7" element={<Seccion7 />} />
+        <Route path="/mice/seccion8" element={<Seccion8 />} />
+        <Route path="/mice/seccion9" element={<Seccion9 />} />
+        <Route path="/mice/contacto" element={<Contacto />} />
+        
+        {/* Redirigir cualquier ruta no encontrada a /mice */}
+        <Route path="*" element={<Navigate to="/mice" replace />} />
       </Routes>
       </main>
       {/* Botón flotante de WhatsApp global */}

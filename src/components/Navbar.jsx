@@ -8,15 +8,15 @@ export default function NavBarEventos() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const sections = [
-    { path: '/seccion1', name: '¿Nos Reunimos en Posadas?' },
-    { path: '/seccion3', name: 'Agenda MICE y Eventos Deportivos' },
-    { path: '/seccion9', name: 'Conectividad' },
-    { path: '/seccion2', name: 'Parque del Conocimiento y Centro de Convenciones' },
-    { path: '/seccion4', name: 'Catálogo de Locaciones para eventos' },
-    { path: '/seccion5', name: 'Posadas Deportiva' },
-    { path: '/seccion7', name: 'Posadas Universitaria' },
-    { path: '/seccion6', name: 'Posadas Sustentable' },
-    { path: '/seccion8', name: 'Posadas Congresos y Convenciones Bureau' }
+    { path: '/mice/seccion1', name: '¿Nos Reunimos en Posadas?' },
+    { path: '/mice/seccion3', name: 'Agenda MICE y Eventos Deportivos' },
+    { path: '/mice/seccion9', name: 'Conectividad' },
+    { path: '/mice/seccion2', name: 'Parque del Conocimiento y Centro de Convenciones' },
+    { path: '/mice/seccion4', name: 'Catálogo de Locaciones para eventos' },
+    { path: '/mice/seccion5', name: 'Posadas Deportiva' },
+    { path: '/mice/seccion7', name: 'Posadas Universitaria' },
+    { path: '/mice/seccion6', name: 'Posadas Sustentable' },
+    { path: '/mice/seccion8', name: 'Posadas Congresos y Convenciones Bureau' }
   ]
 
   return (
@@ -24,13 +24,13 @@ export default function NavBarEventos() {
       <nav className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/mice" className="flex items-center">
             <img src="/logoposadas.png" alt="Logo Posadas" className="h-8 w-auto" />
           </Link>
 
           {/* Navegación Desktop */}
           <div className="hidden md:flex items-center space-x-2">
-            <Link to="/" className="text-green-800 hover:bg-green-800 hover:text-white px-3 py-1.5 rounded-md transition-colors text-sm font-medium">
+            <Link to="/mice" className="text-green-800 hover:bg-green-800 hover:text-white px-3 py-1.5 rounded-md transition-colors text-sm font-medium">
               Inicio
             </Link>
             
@@ -72,7 +72,7 @@ export default function NavBarEventos() {
               </Transition>
             </Menu>
 
-            <Link to="/contacto" className="text-green-800 hover:bg-green-800 hover:text-white px-3 py-1.5 rounded-md transition-colors text-sm font-medium">
+            <Link to="/mice/contacto" className="text-green-800 hover:bg-green-800 hover:text-white px-3 py-1.5 rounded-md transition-colors text-sm font-medium">
               Contacto
             </Link>
           </div>
@@ -90,7 +90,7 @@ export default function NavBarEventos() {
         {isMenuOpen && (
           <div className="md:hidden mt-2 space-y-1 bg-white rounded-lg shadow-lg p-2">
             <Link
-              to="/"
+              to="/mice"
               className="block text-green-800 hover:bg-green-800 hover:text-white px-3 py-2 rounded-md transition-colors text-sm font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
@@ -109,7 +109,7 @@ export default function NavBarEventos() {
             ))}
 
             <Link
-              to="/contacto"
+              to="/mice/contacto"
               className="block text-green-800 hover:bg-green-800 hover:text-white px-3 py-2 rounded-md transition-colors text-sm font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
