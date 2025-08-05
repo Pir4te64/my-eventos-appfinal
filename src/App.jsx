@@ -26,17 +26,17 @@ function App() {
         {/* Redirigir la ruta raíz a /mice */}
         <Route path="/" element={<Navigate to="/mice" replace />} />
         
-        {/* Todas las rutas bajo /mice */}
+        {/* Todas las rutas bajo /mice con nombres descriptivos */}
         <Route path="/mice" element={<Home />} />
-        <Route path="/mice/seccion1" element={<Seccion1 />} />
-        <Route path="/mice/seccion2" element={<Seccion2 />} />
-        <Route path="/mice/seccion3" element={<Seccion3 />} />
-        <Route path="/mice/seccion4" element={<Seccion4 />} />
-        <Route path="/mice/seccion5" element={<Seccion5 />} />
-        <Route path="/mice/seccion6" element={<Seccion6 />} />
-        <Route path="/mice/seccion7" element={<Seccion7 />} />
-        <Route path="/mice/seccion8" element={<Seccion8 />} />
-        <Route path="/mice/seccion9" element={<Seccion9 />} />
+        <Route path="/mice/nos-reunimos-posadas" element={<Seccion1 />} />
+        <Route path="/mice/parque-conocimiento" element={<Seccion2 />} />
+        <Route path="/mice/agenda-mice-deportivos" element={<Seccion3 />} />
+        <Route path="/mice/catalogo-locaciones" element={<Seccion4 />} />
+        <Route path="/mice/posadas-deportiva" element={<Seccion5 />} />
+        <Route path="/mice/posadas-sustentable" element={<Seccion6 />} />
+        <Route path="/mice/posadas-universitaria" element={<Seccion7 />} />
+        <Route path="/mice/bureau-convenciones" element={<Seccion8 />} />
+        <Route path="/mice/conectividad" element={<Seccion9 />} />
         <Route path="/mice/contacto" element={<Contacto />} />
         
         {/* Redirigir cualquier ruta no encontrada a /mice */}

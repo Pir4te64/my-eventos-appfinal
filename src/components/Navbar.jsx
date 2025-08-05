@@ -8,15 +8,15 @@ export default function NavBarEventos() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const sections = [
-    { path: '/mice/seccion1', name: '¿Nos Reunimos en Posadas?' },
-    { path: '/mice/seccion3', name: 'Agenda MICE y Eventos Deportivos' },
-    { path: '/mice/seccion9', name: 'Conectividad' },
-    { path: '/mice/seccion2', name: 'Parque del Conocimiento y Centro de Convenciones' },
-    { path: '/mice/seccion4', name: 'Catálogo de Locaciones para eventos' },
-    { path: '/mice/seccion5', name: 'Posadas Deportiva' },
-    { path: '/mice/seccion7', name: 'Posadas Universitaria' },
-    { path: '/mice/seccion6', name: 'Posadas Sustentable' },
-    { path: '/mice/seccion8', name: 'Posadas Congresos y Convenciones Bureau' }
+    { path: '/mice/nos-reunimos-posadas', name: '¿Nos Reunimos en Posadas?' },
+    { path: '/mice/agenda-mice-deportivos', name: 'Agenda MICE y Eventos Deportivos' },
+    { path: '/mice/conectividad', name: 'Conectividad' },
+    { path: '/mice/parque-conocimiento', name: 'Parque del Conocimiento y Centro de Convenciones' },
+    { path: '/mice/catalogo-locaciones', name: 'Catálogo de Locaciones para eventos' },
+    { path: '/mice/posadas-deportiva', name: 'Posadas Deportiva' },
+    { path: '/mice/posadas-universitaria', name: 'Posadas Universitaria' },
+    { path: '/mice/posadas-sustentable', name: 'Posadas Sustentable' },
+    { path: '/mice/bureau-convenciones', name: 'Posadas Congresos y Convenciones Bureau' }
   ]
 
   return (

@@ -4,18 +4,18 @@ Aplicación web para eventos MICE (Meetings, Incentives, Conferences, Exhibition
 
 ## Estructura de Rutas
 
-La aplicación ahora utiliza el prefijo `/mice` para todas las rutas:
+La aplicación ahora utiliza el prefijo `/mice` para todas las rutas con URLs descriptivas:
 
 - `/mice` - Página de inicio
-- `/mice/seccion1` - ¿Nos Reunimos en Posadas?
-- `/mice/seccion2` - Parque del Conocimiento y Centro de Convenciones
-- `/mice/seccion3` - Agenda MICE y Eventos Deportivos
-- `/mice/seccion4` - Catálogo de Locaciones para eventos
-- `/mice/seccion5` - Posadas Deportiva
-- `/mice/seccion6` - Posadas Sustentable
-- `/mice/seccion7` - Posadas Universitaria
-- `/mice/seccion8` - Posadas Congresos y Convenciones Bureau
-- `/mice/seccion9` - Conectividad
+- `/mice/nos-reunimos-posadas` - ¿Nos Reunimos en Posadas?
+- `/mice/parque-conocimiento` - Parque del Conocimiento y Centro de Convenciones
+- `/mice/agenda-mice-deportivos` - Agenda MICE y Eventos Deportivos
+- `/mice/catalogo-locaciones` - Catálogo de Locaciones para eventos
+- `/mice/posadas-deportiva` - Posadas Deportiva
+- `/mice/posadas-sustentable` - Posadas Sustentable
+- `/mice/posadas-universitaria` - Posadas Universitaria
+- `/mice/bureau-convenciones` - Posadas Congresos y Convenciones Bureau
+- `/mice/conectividad` - Conectividad
 - `/mice/contacto` - Página de contacto
 - `/mice/eventos/:id` - Páginas de eventos individuales
 
