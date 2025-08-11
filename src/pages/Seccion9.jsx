@@ -12,13 +12,29 @@ export default function Seccion9() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <div style={{ backgroundColor: verdePrincipal }} className="relative h-96 flex items-center justify-center overflow-hidden">
-        {/* Overlay eliminado para mostrar el verde sólido */}
+      {/* Hero Section con imagen de fondo */}
+      <div className="relative h-96 flex items-center justify-center overflow-hidden">
+        {/* Imagen de fondo responsiva usando CSS */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/Conectividad.png)'
+          }}
+        ></div>
+        
+        {/* Imagen mobile usando media query CSS - se ve completa sin recortar */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-contain bg-center bg-no-repeat md:hidden"
+          style={{
+            backgroundImage: 'url(/ConectividadMobile.png)'
+          }}
+        ></div>
+        
+        {/* Contenido del banner con mejor contraste */}
         <div className="relative z-10 flex items-center justify-center h-full w-full">
-          <div className="text-center w-full">
-            <h1 className="text-5xl font-bold text-white mb-4">Conectividad</h1>
-            <p className="text-xl text-white max-w-2xl mx-auto">
+          <div className="text-center w-full px-4">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-2xl">Conectividad</h1>
+            <p className="text-lg md:text-xl text-white max-w-2xl mx-auto drop-shadow-2xl font-semibold">
               Conectando Posadas con el mundo a través de tecnología avanzada
             </p>
           </div>
@@ -31,7 +47,13 @@ export default function Seccion9() {
         <div className="mb-16">
           <div className="text-center mb-12">
             <div style={{ backgroundColor: verdePrincipal }} className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <span className="text-white text-2xl">✈️</span>
+              <svg 
+                className="w-8 h-8 text-white" 
+                fill="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+              </svg>
             </div>
             <h2 className="text-4xl font-bold text-gray-800 mb-6 hover:text-green-700 transition-colors duration-300">
               Conectividad Aérea y Terrestre
@@ -46,7 +68,11 @@ export default function Seccion9() {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
               <div style={{ background: `linear-gradient(135deg, ${verdePrincipal} 60%, #009e60 100%)` }} className="h-48 flex items-center justify-center group-hover:brightness-110 transition-all duration-300">
-                <span className="text-white text-4xl">✈️</span>
+                <img 
+                  src="/vuelos.png" 
+                  alt="Vuelos y Aerolíneas" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <div className="p-6 text-center group-hover:bg-gray-50 transition-colors duration-300">
                 <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-green-700 transition-colors duration-300">Aerolíneas</h3>
@@ -55,7 +81,11 @@ export default function Seccion9() {
             </div>
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
               <div style={{ background: `linear-gradient(135deg, ${verdePrincipal} 60%, #009e60 100%)` }} className="h-48 flex items-center justify-center group-hover:brightness-110 transition-all duration-300">
-                <span className="text-white text-4xl">🚌</span>
+                <img 
+                  src="/bus.png" 
+                  alt="Transporte y Buses" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <div className="p-6 text-center group-hover:bg-gray-50 transition-colors duration-300">
                 <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-green-700 transition-colors duration-300">Transporte</h3>
@@ -64,7 +94,11 @@ export default function Seccion9() {
             </div>
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
               <div style={{ background: `linear-gradient(135deg, ${verdePrincipal} 60%, #009e60 100%)` }} className="h-48 flex items-center justify-center group-hover:brightness-110 transition-all duration-300">
-                <span className="text-white text-4xl">🌉</span>
+                <img 
+                  src="/puente.png" 
+                  alt="Frontera y Puente" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <div className="p-6 text-center group-hover:bg-gray-50 transition-colors duration-300">
                 <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-green-700 transition-colors duration-300">Frontera</h3>
