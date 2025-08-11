@@ -3,11 +3,32 @@ import React from 'react'
 export default function Seccion6() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <div style={{ backgroundColor: '#00723e' }} className="relative h-96 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold text-white mb-4">Posadas Sustentable</h1>
-          <p className="text-xl text-white max-w-2xl mx-auto">Compromiso con el turismo responsable y la sostenibilidad ambiental.</p>
+      {/* Hero Section con imagen de fondo */}
+      <div className="relative h-96 flex items-center justify-center overflow-hidden">
+        {/* Imagen de fondo responsiva usando CSS */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/sustentable.png)'
+          }}
+        ></div>
+        
+        {/* Imagen mobile usando media query CSS - se ve completa sin recortar */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-contain bg-center bg-no-repeat md:hidden"
+          style={{
+            backgroundImage: 'url(/sustentablemobile.png)'
+          }}
+        ></div>
+        
+        {/* Contenido del banner con mejor contraste */}
+        <div className="relative z-10 flex items-center justify-center h-full w-full">
+          <div className="text-center w-full px-4">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-2xl">Posadas Sustentable</h1>
+            <p className="text-lg md:text-xl text-white max-w-2xl mx-auto drop-shadow-2xl font-semibold">
+              Compromiso con el turismo responsable y la sostenibilidad ambiental.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -17,7 +38,13 @@ export default function Seccion6() {
         <div className="mb-16">
           <div className="text-center mb-12">
             <div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-white text-2xl">🌿</span>
+              <svg 
+                className="w-8 h-8 text-white" 
+                fill="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3 21 5 17 8 17 8M8 18c-1.31 0-2.5-.94-2.5-2.1S6.69 13.8 8 13.8s2.5.94 2.5 2.1S9.31 18 8 18Z"/>
+              </svg>
             </div>
             <h2 className="text-4xl font-bold text-gray-800 mb-6">
               Ecomeetings en Posadas
