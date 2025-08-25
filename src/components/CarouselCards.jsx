@@ -216,12 +216,12 @@ export default function CarouselCards() {
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 px-12">
             {getVisibleItems().map((item, index) => (
-              <div
-                key={`${item.title}-${index}`}
-                className={`group relative bg-white rounded-2xl shadow-sm hover:shadow-2xl hover:bg-green-800 transition-all duration-500 transform hover:-translate-y-2 ${
-                  isTransitioning ? 'opacity-75' : 'opacity-100'
-                }`}
-              >
+                              <div
+                  key={`${item.title}-${index}`}
+                  className={`group relative bg-white rounded-2xl shadow-sm hover:shadow-2xl hover:bg-green-800 transition-all duration-500 transform hover:-translate-y-2 aspect-square ${
+                    isTransitioning ? 'opacity-75' : 'opacity-100'
+                  }`}
+                >
                 {/* Featured Badge */}
                 {item.featured && (
                   <div className="absolute top-4 left-4 z-10">
@@ -239,43 +239,53 @@ export default function CarouselCards() {
                 </div>
 
                 {/* Image Container */}
-                <div className="relative overflow-hidden rounded-t-2xl">
+                <div className="relative overflow-hidden rounded-t-2xl h-40">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <h3 className="font-bevietnam text-lg font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-white transition-colors">
+                <div className="p-4 md:p-5 flex flex-col h-full">
+                  {/* Title with better text handling */}
+                  <h3 className="font-bevietnam text-sm md:text-base font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-white transition-colors leading-tight">
                     {item.title}
                   </h3>
                   
-                  <div className="space-y-2">
-                    <div className="flex items-center text-sm text-gray-600 group-hover:text-white transition-colors">
-                      <CalendarIcon className="w-4 h-4 mr-2 flex-shrink-0 group-hover:text-white transition-colors" />
-                      <span className="font-medium">{formatDate(item.startDate)}</span>
-                      {item.startDate !== item.endDate && (
-                        <>
-                          <span className="mx-1">-</span>
-                          <span className="font-medium">{formatDate(item.endDate)}</span>
-                        </>
-                      )}
+                  {/* Content area with proper spacing */}
+                  <div className="space-y-2 flex-1 min-h-0">
+                    {/* Date section */}
+                    <div className="flex items-center text-xs text-gray-600 group-hover:text-white transition-colors">
+                      <CalendarIcon className="w-3 h-3 mr-2 flex-shrink-0 group-hover:text-white transition-colors" />
+                      <div className="min-w-0 flex-1">
+                        <span className="font-medium">{formatDate(item.startDate)}</span>
+                        {item.startDate !== item.endDate && (
+                          <>
+                            <span className="mx-1">-</span>
+                            <span className="font-medium">{formatDate(item.endDate)}</span>
+                          </>
+                        )}
+                      </div>
                     </div>
                     
-                    <div className="flex items-start text-sm text-gray-600 group-hover:text-white transition-colors">
-                      <MapPinIcon className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 group-hover:text-white transition-colors" />
-                      <span className="line-clamp-2">{item.place}</span>
+                    {/* Location section with better text wrapping */}
+                    <div className="flex items-start text-xs text-gray-600 group-hover:text-white transition-colors">
+                      <MapPinIcon className="w-3 h-3 mr-2 mt-0.5 flex-shrink-0 group-hover:text-white transition-colors" />
+                      <div className="min-w-0 flex-1">
+                        <span className="line-clamp-2 leading-relaxed">{item.place}</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* CTA Button */}
-                  <button className="mt-4 w-full bg-green-800 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition-all duration-300 transform hover:scale-105">
-                    Ver Detalles
-                  </button>
+                  {/* Bottom text with proper positioning */}
+                  <div className="mt-3 text-center pt-2 border-t border-gray-100 group-hover:border-green-700 transition-colors">
+                    <p className="text-xs font-medium tracking-wide group-hover:text-white text-gray-900 transition-colors line-clamp-1">
+                      {item.category} • {item.place.split(' - ')[0]}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -301,9 +311,23 @@ export default function CarouselCards() {
 
       {/* Custom CSS for line-clamp and grid pattern */}
       <style jsx>{`
+        .line-clamp-1 {
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
@@ -312,7 +336,7 @@ export default function CarouselCards() {
           background-image: 
             linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
-          background-size: 20px 20px;
+          background-size: 24px 24px;
         }
       `}</style>
     </section>
