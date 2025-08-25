@@ -14,6 +14,7 @@ import Seccion8 from './pages/Seccion8'
 import Seccion9 from './pages/Seccion9'
 import Contacto from './pages/Contacto'
 import ScrollToTop from './components/ScrollToTop'
+import Footer from './components/Footer'
 import { FaWhatsapp } from 'react-icons/fa';
 
 function App() {
@@ -36,13 +37,14 @@ function App() {
         <Route path="/mice/posadas-sustentable" element={<Seccion6 />} />
         <Route path="/mice/posadas-universitaria" element={<Seccion7 />} />
         <Route path="/mice/bureau-convenciones" element={<Seccion8 />} />
-        <Route path="/mice/conectividad" element={<Seccion9 />} />
+        <Route path="/mice/posadas-conectividad" element={<Seccion9 />} />
         <Route path="/mice/contacto" element={<Contacto />} />
         
         {/* Redirigir cualquier ruta no encontrada a /mice */}
         <Route path="*" element={<Navigate to="/mice" replace />} />
       </Routes>
       </main>
+      <Footer />
       {/* Botón flotante de WhatsApp global */}
       <a
         href="https://wa.me/5493764578395"

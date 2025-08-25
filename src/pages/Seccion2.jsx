@@ -1,6 +1,7 @@
 // src/pages/Seccion2.jsx
 import React, { useState } from 'react'
 import { FaBuilding, FaUsers, FaMicrophone, FaWifi, FaParking, FaMapMarkerAlt, FaPhone, FaEnvelope, FaGlobe, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 export default function Seccion2() {
   const [activeTab, setActiveTab] = useState('convenciones')
@@ -84,17 +85,17 @@ export default function Seccion2() {
   return (
     <div className="font-source">
       {/* Hero banner */}
-      <section className="relative rounded-3xl max-w-7xl mx-auto mt-8 h-[400px] overflow-hidden">
+      <section className="relative max-w-7xl mx-auto mt-8 h-[400px] overflow-hidden rounded-2xl">
         <img src="/fondo2.png" alt="Banner" className="absolute inset-0 w-full h-full object-cover opacity-90" />
         <div className="relative z-10 flex flex-col justify-center items-center h-full px-6 text-center text-white">
-          <span className="text-xs uppercase tracking-widest">Parque del Conocimiento</span>
-          <h1 className="mt-4 text-5xl font-bevietnam">Centro de Convenciones y Eventos</h1>
+          <span className="text-sm uppercase tracking-widest font-medium opacity-90">Parque del Conocimiento</span>
+          <h1 className="mt-4 text-4xl md:text-5xl font-bevietnam font-bold">Centro de Convenciones y Eventos</h1>
         </div>
       </section>
 
       {/* Descripción general */}
-      <section className="max-w-4xl mx-auto mt-16 px-6">
-        <div className="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-[1.02] transition-transform duration-300">
+      <section className="max-w-4xl mx-auto mt-20 px-6">
+        <div className="bg-white rounded-xl p-8 border border-gray-100">
           <p className="text-gray-700 leading-relaxed mb-6 text-lg">
             El Centro Provincial de Convenciones y Eventos es una moderna edificación que cuenta con tres salas acondicionadas para recibir actividades diversas. Es un espacio destinado a eventos culturales, científicos y artísticos.
           </p>
@@ -108,11 +109,11 @@ export default function Seccion2() {
       </section>
 
       {/* Tabs de navegación */}
-      <section className="max-w-7xl mx-auto mt-16 px-6">
-        <div className="flex justify-center space-x-4 mb-8">
+      <section className="max-w-6xl mx-auto mt-20 px-6">
+        <div className="flex justify-center space-x-2 mb-12">
           <button
             onClick={() => setActiveTab('convenciones')}
-            className={`px-6 py-3 rounded-full transition-colors ${
+            className={`px-6 py-3 rounded-lg transition-colors font-medium ${
               activeTab === 'convenciones'
                 ? 'bg-green-800 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -122,7 +123,7 @@ export default function Seccion2() {
           </button>
           <button
             onClick={() => setActiveTab('teatros')}
-            className={`px-6 py-3 rounded-full transition-colors ${
+            className={`px-6 py-3 rounded-lg transition-colors font-medium ${
               activeTab === 'teatros'
                 ? 'bg-green-800 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -134,119 +135,154 @@ export default function Seccion2() {
 
         {/* Contenido de las tabs */}
         {activeTab === 'convenciones' && (
-          <div className="space-y-12">
+          <div className="space-y-16">
             {/* Salas */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {convenciones.salas.map((sala, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4">{sala.nombre}</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center text-gray-600">
-                      <FaUsers className="mr-2" />
-                      <span>Capacidad: {sala.capacidad} personas</span>
-                    </div>
-                    <div className="flex items-center text-gray-600">
-                      <FaBuilding className="mr-2" />
-                      <span>Dimensiones: {sala.dimensiones}</span>
-                    </div>
-                    {sala.escenario && (
-                      <div className="flex items-center text-gray-600">
-                        <FaMicrophone className="mr-2" />
-                        <span>Escenario: {sala.escenario}</span>
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Salas de Convenciones</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {convenciones.salas.map((sala, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="bg-white rounded-lg p-6 border border-gray-100 hover:border-green-200 transition-colors duration-300"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">{sala.nombre}</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-center text-gray-600 text-sm">
+                        <FaUsers className="mr-2 text-green-800" />
+                        <span>Capacidad: {sala.capacidad} personas</span>
                       </div>
-                    )}
-                    <div className="mt-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Equipamiento:</h4>
-                      <ul className="list-disc list-inside text-gray-600 space-y-1">
-                        {sala.equipamiento.map((item, i) => (
-                          <li key={i}>{item}</li>
-                        ))}
-                      </ul>
+                      <div className="flex items-center text-gray-600 text-sm">
+                        <FaBuilding className="mr-2 text-green-800" />
+                        <span>Dimensiones: {sala.dimensiones}</span>
+                      </div>
+                      {sala.escenario && (
+                        <div className="flex items-center text-gray-600 text-sm">
+                          <FaMicrophone className="mr-2 text-green-800" />
+                          <span>Escenario: {sala.escenario}</span>
+                        </div>
+                      )}
+                      <div className="mt-4">
+                        <h4 className="font-semibold text-gray-900 mb-2 text-sm">Equipamiento:</h4>
+                        <ul className="list-disc list-inside text-gray-600 space-y-1 text-sm">
+                          {sala.equipamiento.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             {/* Pabellones */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {convenciones.pabellones.map((pabellon, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4">{pabellon.nombre}</h3>
-                  <div className="flex items-center text-gray-600">
-                    <FaUsers className="mr-2" />
-                    <span>Capacidad: {pabellon.capacidad} personas</span>
-                  </div>
-                </div>
-              ))}
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Pabellones Feriales</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {convenciones.pabellones.map((pabellon, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="bg-white rounded-lg p-6 border border-gray-100 hover:border-green-200 transition-colors duration-300"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">{pabellon.nombre}</h3>
+                    <div className="flex items-center text-gray-600 text-sm">
+                      <FaUsers className="mr-2 text-green-800" />
+                      <span>Capacidad: {pabellon.capacidad} personas</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         )}
 
         {activeTab === 'teatros' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Teatro Lírico */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Teatro Lírico</h3>
-              <div className="space-y-4">
-                <div className="flex items-center text-gray-600">
-                  <FaUsers className="mr-2" />
-                  <span>Capacidad: {teatros.lirico.capacidad.plateaBaja + teatros.lirico.capacidad.plateaAlta} personas</span>
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Teatros</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Teatro Lírico */}
+              <motion.div 
+                className="bg-white rounded-lg p-6 border border-gray-100 hover:border-green-200 transition-colors duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Teatro Lírico</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center text-gray-600 text-sm">
+                    <FaUsers className="mr-2 text-green-800" />
+                    <span>Capacidad: {teatros.lirico.capacidad.plateaBaja + teatros.lirico.capacidad.plateaAlta} personas</span>
+                  </div>
+                  <div className="mt-4">
+                    <h4 className="font-semibold text-gray-900 mb-2 text-sm">Características:</h4>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1 text-sm">
+                      {teatros.lirico.caracteristicas.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className="mt-4">
-                  <h4 className="font-semibold text-gray-800 mb-2">Características:</h4>
-                  <ul className="list-disc list-inside text-gray-600 space-y-1">
-                    {teatros.lirico.caracteristicas.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+              </motion.div>
 
-            {/* Teatro de Prosa */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Teatro de Prosa</h3>
-              <div className="space-y-4">
-                <div className="flex items-center text-gray-600">
-                  <FaUsers className="mr-2" />
-                  <span>Capacidad: {teatros.prosa.capacidad} personas</span>
+              {/* Teatro de Prosa */}
+              <motion.div 
+                className="bg-white rounded-lg p-6 border border-gray-100 hover:border-green-200 transition-colors duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Teatro de Prosa</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center text-gray-600 text-sm">
+                    <FaUsers className="mr-2 text-green-800" />
+                    <span>Capacidad: {teatros.prosa.capacidad} personas</span>
+                  </div>
+                  <div className="mt-4">
+                    <h4 className="font-semibold text-gray-900 mb-2 text-sm">Características:</h4>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1 text-sm">
+                      {teatros.prosa.caracteristicas.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className="mt-4">
-                  <h4 className="font-semibold text-gray-800 mb-2">Características:</h4>
-                  <ul className="list-disc list-inside text-gray-600 space-y-1">
-                    {teatros.prosa.caracteristicas.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         )}
       </section>
 
       {/* Información de contacto */}
-      <section className="max-w-4xl mx-auto mt-16 px-6 mb-16">
-        <div className="bg-green-50 rounded-2xl p-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Información de Contacto</h2>
+      <section className="max-w-4xl mx-auto mt-20 px-6 mb-20">
+        <div className="bg-green-50 rounded-xl p-8 border border-green-100">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">Información de Contacto</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="flex items-center text-gray-700">
+            <div className="space-y-3">
+              <div className="flex items-center text-gray-700 text-sm">
                 <FaMapMarkerAlt className="mr-3 text-green-800" />
                 <span>Ulises López y RN12 (Acceso Oeste)</span>
               </div>
-              <div className="flex items-center text-gray-700">
+              <div className="flex items-center text-gray-700 text-sm">
                 <FaPhone className="mr-3 text-green-800" />
                 <span>0376 459-7565</span>
               </div>
-              <div className="flex items-center text-gray-700">
+              <div className="flex items-center text-gray-700 text-sm">
                 <FaEnvelope className="mr-3 text-green-800" />
                 <span>comunicacionparqueconocimiento@gmail.com</span>
               </div>
             </div>
-            <div className="space-y-4">
-              <div className="flex items-center text-gray-700">
+            <div className="space-y-3">
+              <div className="flex items-center text-gray-700 text-sm">
                 <FaGlobe className="mr-3 text-green-800" />
                 <a href="https://www.parquedelconocimiento.com/" target="_blank" rel="noopener noreferrer" className="hover:text-green-800">
                   www.parquedelconocimiento.com
@@ -254,13 +290,13 @@ export default function Seccion2() {
               </div>
               <div className="flex space-x-4">
                 <a href="https://www.instagram.com/parqueconocimiento" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-green-800">
-                  <FaInstagram className="text-2xl" />
+                  <FaInstagram className="text-xl" />
                 </a>
                 <a href="https://www.facebook.com/parquedelconocimiento" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-green-800">
-                  <FaFacebook className="text-2xl" />
+                  <FaFacebook className="text-xl" />
                 </a>
                 <a href="https://twitter.com/PCMisiones" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-green-800">
-                  <FaTwitter className="text-2xl" />
+                  <FaTwitter className="text-xl" />
                 </a>
               </div>
             </div>
@@ -270,7 +306,7 @@ export default function Seccion2() {
               href="https://www.google.com/maps/place/Parque+del+Conocimiento/@-27.3975928,-55.9684507,16z/data=!4m6!3m5!1s0x9457bdbbe1e99fc9:0xdf0deea1a2a169cd!8m2!3d-27.3951525!4d-55.9638109!16s%2Fg%2F1hh_q_1wg?entry=ttu"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-green-800 text-white px-6 py-3 rounded-full hover:bg-green-700 transition-colors"
+              className="inline-block bg-green-800 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
             >
               Ver en Google Maps
             </a>

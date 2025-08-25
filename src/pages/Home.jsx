@@ -5,7 +5,6 @@ import CarouselCards from '../components/CarouselCards'
 import FeaturesSection from '../components/FeaturesSection'
 import Testimonial from '../components/Testimonial'
 import Newsletter from '../components/Newsletter'
-import Footer from '../components/Footer'
 
 export default function Home() {
   const courseItems = [
@@ -23,7 +22,6 @@ export default function Home() {
       <FeaturesSection />
       <Testimonial />
       {/* <Newsletter /> */}
-      <Footer />
     </>
   )
 }

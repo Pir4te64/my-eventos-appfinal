@@ -1,70 +1,119 @@
 // src/components/FeaturesSection.jsx
 import { Link } from 'react-router-dom'
+import { CalendarIcon, GlobeAltIcon, BuildingOfficeIcon, MapPinIcon } from '@heroicons/react/24/outline'
 
 export default function FeaturesSection() {
     const features = [
       {
-        icon: 'https://cdn-icons-png.flaticon.com/512/1828/1828925.png',
+        icon: CalendarIcon,
         title: 'Agenda MICE y Eventos Deportivos',
-        path: '/seccion3',
+        description: 'Eventos profesionales y deportivos de primer nivel',
+        path: '/mice/agenda-mice-deportivos',
       },
       {
-        icon: 'https://cdn-icons-png.flaticon.com/512/484/484167.png',
+        icon: GlobeAltIcon,
         title: 'Conectividad',
-        path: '/seccion9',
+        description: 'Aérea y terrestre para llegar a Posadas',
+        path: '/mice/posadas-conectividad',
       },
       {
-        // Edificio institucional monocromático, diferente
-        icon: 'https://cdn-icons-png.flaticon.com/512/747/747376.png',
-        title: 'Parque del Conocimiento y Centro de Convenciones',
-        path: '/seccion2',
+        icon: BuildingOfficeIcon,
+        title: 'Parque del Conocimiento',
+        description: 'Centro de Convenciones y eventos culturales',
+        path: '/mice/parque-conocimiento',
       },
       {
-        icon: 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png',
-        title: 'Catálogo de Locaciones para eventos',
-        path: '/seccion4',
+        icon: MapPinIcon,
+        title: 'Catálogo de Locaciones',
+        description: 'Espacios únicos para tus eventos',
+        path: '/mice/catalogo-locaciones',
       },
     ]
 
-    // Filtros CSS para verde y blanco
-    const greenFilter = 'invert(41%) sepia(97%) saturate(749%) hue-rotate(97deg) brightness(90%) contrast(92%)';
-    const whiteFilter = 'invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(110%)';
-
     return (
-      <section className="py-12 bg-gray-50">
-        <h2 className="text-center font-bevietnam text-2xl mb-8">¿Qué te gustaría conocer?</h2>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
-          {features.map((f, i) => (
-            <Link
-              to={f.path}
-              key={i}
-              className="bg-white rounded-lg shadow p-4 text-center font-source transition-colors block border border-gray-100 hover:shadow-lg group flex flex-col items-center justify-center min-h-[170px]"
-              style={{ position: 'relative', overflow: 'hidden' }}
-            >
-              <div className="flex flex-col items-center justify-center flex-1">
-                <img
-                  src={f.icon}
-                  alt={f.title}
-                  className="mx-auto transition-all duration-200 group-hover:filter-white"
-                  style={{ height: '38px', width: '38px', marginBottom: '0.7rem', filter: greenFilter, transition: 'filter 0.2s' }}
-                  onMouseOver={e => e.currentTarget.style.filter = whiteFilter}
-                  onMouseOut={e => e.currentTarget.style.filter = greenFilter}
-                />
-                <h3
-                  className="font-bevietnam text-base text-green-800 font-semibold group-hover:text-white transition-colors mt-1"
-                  style={{ lineHeight: '1.2' }}
+      <section className="relative py-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-3"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header Section */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bevietnam font-black text-gray-900 mb-6">
+              ¿Qué te gustaría conocer?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto font-source">
+              Explora las diferentes facetas que hacen de Posadas el destino ideal para tus eventos
+            </p>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => {
+              const IconComponent = feature.icon
+              return (
+                <Link
+                  to={feature.path}
+                  key={index}
+                  className="group relative bg-white rounded-2xl shadow-sm hover:shadow-2xl hover:bg-green-800 transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 overflow-hidden"
                 >
-                  {f.title}
-                </h3>
-              </div>
-              <style>{`
-                .group:hover {
-                  background-color: #166534 !important;
-                }
-              `}</style>
-            </Link>
-          ))}
+                  {/* Card Content */}
+                  <div className="p-8 text-center">
+                    {/* Icon Container */}
+                    <div className="relative mb-6">
+                      <div className="w-16 h-16 mx-auto bg-green-50 rounded-2xl flex items-center justify-center group-hover:bg-green-700 transition-all duration-300">
+                        <IconComponent className="w-8 h-8 text-green-600 group-hover:text-white transition-colors" />
+                      </div>
+                      {/* Subtle glow effect */}
+                      <div className="absolute inset-0 bg-green-100 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                    </div>
+
+                    {/* Text Content */}
+                    <div className="space-y-3">
+                      <h3 className="font-bevietnam text-xl font-bold text-gray-900 group-hover:text-white transition-colors leading-tight">
+                        {feature.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 group-hover:text-green-100 transition-colors font-source leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+
+                    {/* Arrow indicator */}
+                    <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                      <div className="w-8 h-8 mx-auto bg-green-700 rounded-full flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Subtle border animation */}
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-green-600 transition-all duration-300 opacity-0 group-hover:opacity-20"></div>
+                </Link>
+              )
+            })}
+          </div>
+
+          {/* Bottom decoration */}
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center space-x-2 text-sm text-gray-500 font-source">
+              <span>Descubre más sobre Posadas</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
         </div>
+
+        {/* Custom CSS for grid pattern */}
+        <style jsx>{`
+          .bg-grid-pattern {
+            background-image: 
+              linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+          }
+        `}</style>
       </section>
     )
 }
