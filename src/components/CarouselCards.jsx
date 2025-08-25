@@ -214,11 +214,11 @@ export default function CarouselCards() {
           </button>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 px-12">
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 px-4 md:px-12 overflow-x-auto md:overflow-visible scrollbar-hide">
             {getVisibleItems().map((item, index) => (
                               <div
                   key={`${item.title}-${index}`}
-                  className={`group relative bg-white rounded-2xl shadow-sm hover:shadow-2xl hover:bg-green-800 transition-all duration-500 transform hover:-translate-y-2 aspect-square ${
+                  className={`group relative bg-white rounded-2xl shadow-sm hover:shadow-2xl hover:bg-green-800 transition-all duration-500 transform hover:-translate-y-2 aspect-square flex-shrink-0 w-80 md:w-auto ${
                     isTransitioning ? 'opacity-75' : 'opacity-100'
                   }`}
                 >
@@ -337,6 +337,15 @@ export default function CarouselCards() {
             linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
           background-size: 24px 24px;
+        }
+        
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </section>
