@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { MagnifyingGlassIcon, MapPinIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ShareIcon } from '@heroicons/react/24/outline';
 
 const SEDES = [
   { nombre: 'Autódromo Rosamonte', direccion: 'Calle (79) y Av. J M Fangio', telefono: '', email: 'autodromoposadas@gmail.com', web: 'https://automovilismomisionero.com.ar/', redes: 'Instagram: @autodromorosamonte Facebook: @AutodromoRosamonte' },
@@ -63,110 +64,154 @@ export default function Seccion5() {
   }, [search]);
 
   return (
-    <div className="font-source">
-      {/* Hero banner */}
-      <section className="relative max-w-7xl mx-auto mt-8 h-[400px] overflow-hidden rounded-2xl">
+    <div className="font-source min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="relative w-full h-[300px] md:h-[400px] overflow-hidden">
         <img src="/Deporte.png" alt="Banner Deportivo" className="absolute inset-0 w-full h-full object-cover opacity-90 hidden md:block" />
         <img src="/DeporteMobile.png" alt="Banner Deportivo" className="absolute inset-0 w-full h-full object-cover opacity-90 md:hidden" />
-        <div className="relative z-10 flex flex-col justify-center items-center h-full px-6 text-center text-white">
-          <span className="text-sm uppercase tracking-widest font-medium opacity-90">Deportes</span>
-          <h1 className="mt-4 text-4xl md:text-5xl font-bevietnam font-bold">Posadas Deportiva</h1>
-          <p className="mt-4 text-lg max-w-2xl mx-auto opacity-90">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+        <div className="relative z-10 flex flex-col justify-center items-center h-full px-4 md:px-6 text-center text-white">
+          <span className="text-xs md:text-sm uppercase tracking-widest font-medium opacity-90 mb-2">Deportes</span>
+          <h1 className="text-3xl md:text-5xl font-bevietnam font-black mb-3 md:mb-4 leading-tight">
+            Posadas Deportiva
+          </h1>
+          <p className="text-sm md:text-lg max-w-2xl mx-auto opacity-90 px-4">
             La ciudad como sede de grandes eventos deportivos nacionales e internacionales.
           </p>
         </div>
       </section>
 
-      {/* Catálogo de Sedes Deportivas */}
-      <motion.section
-        className="max-w-6xl mx-auto px-6 mt-20"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="text-2xl font-semibold text-center text-gray-900 mb-8">
-          Catálogo de Sedes Deportivas
-        </h2>
-        <div className="mb-8 flex justify-center">
-          <input
-            type="text"
-            placeholder="Buscar sede, dirección, contacto..."
-            className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 -mt-8 md:-mt-16 relative z-20">
+        {/* Search Section */}
+        <motion.section
+          className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="text-center mb-6">
+            <h2 className="text-2xl md:text-3xl font-bevietnam font-bold text-gray-900 mb-2">
+              Catálogo de Sedes Deportivas
+            </h2>
+            <p className="text-gray-600 text-sm md:text-base">
+              Encuentra la sede deportiva perfecta para tu evento
+            </p>
+          </div>
+          
+          {/* Search Input */}
+          <div className="relative max-w-md mx-auto">
+            <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Buscar sede, dirección, contacto..."
+              className="w-full pl-10 pr-4 py-3 md:py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent text-sm md:text-base transition-all duration-200"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+          </div>
+        </motion.section>
+
+        {/* Results Count */}
+        {search && (
+          <div className="text-center mb-6">
+            <p className="text-sm text-gray-600">
+              {sedesFiltradas.length} sede{sedesFiltradas.length !== 1 ? 's' : ''} encontrada{sedesFiltradas.length !== 1 ? 's' : ''}
+            </p>
+          </div>
+        )}
+
+        {/* Sedes Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 mb-12">
           {sedesFiltradas.length === 0 ? (
-            <div className="col-span-full text-center py-8 text-gray-500">No se encontraron sedes deportivas.</div>
+            <div className="col-span-full text-center py-12">
+              <div className="text-gray-400 mb-4">
+                <MagnifyingGlassIcon className="w-16 h-16 mx-auto opacity-50" />
+              </div>
+              <p className="text-gray-500 text-lg font-medium">No se encontraron sedes deportivas</p>
+              <p className="text-gray-400 text-sm mt-2">Intenta con otros términos de búsqueda</p>
+            </div>
           ) : (
             sedesFiltradas.map((sede, i) => {
               const open = openIndex === i;
               return (
                 <motion.div
                   key={i}
-                  className={`transition-all duration-300 rounded-lg overflow-hidden border ${
-                    open ? 'border-green-200 bg-green-50' : 'border-gray-100 bg-white hover:border-green-200'
-                  }`}
+                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: i * 0.03 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
                 >
-                  {/* Botón central */}
+                  {/* Header */}
                   <button
-                    className={`w-full flex flex-col items-center justify-center px-4 py-4 focus:outline-none transition-colors ${
-                      open ? 'bg-transparent' : 'bg-white'
-                    } select-none`}
+                    className={`w-full p-4 md:p-5 text-left focus:outline-none transition-all duration-300 ${
+                      open ? 'bg-green-50 border-l-4 border-l-green-600' : 'hover:bg-gray-50'
+                    }`}
                     onClick={() => setOpenIndex(open ? null : i)}
                     aria-expanded={open}
                   >
-                    <span className="block text-sm font-semibold text-gray-900 text-center mb-1">{sede.nombre}</span>
-                    <span className="block text-xs text-gray-600 text-center font-medium mb-2">{sede.direccion}</span>
-                    <span className={`text-sm transition-transform duration-300 ${
-                      open ? 'rotate-180 text-green-700' : 'text-green-600'
-                    }`}>
-                      ▼
-                    </span>
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bevietnam text-sm md:text-base font-bold text-gray-900 mb-2 leading-tight">
+                          {sede.nombre}
+                        </h3>
+                        <div className="flex items-center text-xs text-gray-600">
+                          <MapPinIcon className="w-4 h-4 mr-1 flex-shrink-0" />
+                          <span className="truncate">{sede.direccion}</span>
+                        </div>
+                      </div>
+                      <div className={`ml-3 flex-shrink-0 transition-transform duration-300 ${
+                        open ? 'rotate-180 text-green-600' : 'text-gray-400'
+                      }`}>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
                   </button>
                   
-                  {/* Información desplegable */}
-                  <div className={`transition-all duration-300 w-full ${
-                    open ? 'opacity-100 max-h-96 py-3' : 'opacity-0 max-h-0 py-0'
+                  {/* Expandable Content */}
+                  <div className={`transition-all duration-300 overflow-hidden ${
+                    open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                   }`}>
                     {open && (
-                      <div className="w-full px-4 space-y-2">
+                      <div className="p-4 md:p-5 pt-0 space-y-3 border-t border-gray-100">
                         {sede.telefono && (
-                          <div className="text-xs text-gray-700">
-                            <span className="font-semibold">Teléfono:</span> {sede.telefono}
+                          <div className="flex items-center text-sm">
+                            <PhoneIcon className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
+                            <span className="text-gray-700">{sede.telefono}</span>
                           </div>
                         )}
                         {sede.email && (
-                          <div className="text-xs text-gray-700">
-                            <span className="font-semibold">Email:</span> 
-                            <a href={`mailto:${sede.email}`} className="text-green-700 underline ml-1">
+                          <div className="flex items-center text-sm">
+                            <EnvelopeIcon className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
+                            <a 
+                              href={`mailto:${sede.email}`} 
+                              className="text-green-700 hover:text-green-800 underline transition-colors"
+                            >
                               {sede.email}
                             </a>
                           </div>
                         )}
                         {sede.web && (
-                          <div className="text-xs text-gray-700">
-                            <span className="font-semibold">Web:</span> 
+                          <div className="flex items-center text-sm">
+                            <GlobeAltIcon className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
                             <a 
                               href={sede.web.startsWith('http') ? sede.web : `https://${sede.web}`} 
                               target="_blank" 
                               rel="noopener noreferrer" 
-                              className="text-green-700 underline ml-1"
+                              className="text-green-700 hover:text-green-800 underline transition-colors truncate"
                             >
                               {sede.web.replace('https://','').replace('http://','')}
                             </a>
                           </div>
                         )}
                         {sede.redes && (
-                          <div className="text-xs text-gray-700">
-                            <span className="font-semibold">Redes:</span> 
-                            <span className="text-green-700 ml-1">{sede.redes}</span>
+                          <div className="flex items-start text-sm">
+                            <ShareIcon className="w-4 h-4 mr-2 text-green-600 flex-shrink-0 mt-0.5" />
+                            <span className="text-gray-700 text-xs leading-relaxed">{sede.redes}</span>
                           </div>
                         )}
                       </div>
@@ -177,7 +222,23 @@ export default function Seccion5() {
             })
           )}
         </div>
-      </motion.section>
+
+        {/* Footer CTA */}
+        <motion.div
+          className="text-center py-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <p className="text-gray-500 text-sm">
+            ¿No encuentras lo que buscas? 
+            <a href="/mice/contacto" className="text-green-600 hover:text-green-700 font-medium ml-1 transition-colors">
+              Contáctanos
+            </a>
+          </p>
+        </motion.div>
+      </div>
     </div>
   );
 } 
