@@ -68,17 +68,6 @@ export default function Slider() {
                 className="w-full h-full object-cover opacity-90 rounded-3xl"
                 draggable="false"
               />
-              <div className="absolute inset-0 z-20 flex flex-col justify-center items-center px-6 text-center text-white pointer-events-none">
-                <span className="text-xs uppercase tracking-widest">Bienvenidos a Posadas</span>
-                <h1 className="mt-4 text-5xl font-bevietnam">{slide.title}</h1>
-                <p className="mt-4 text-xl max-w-2xl">{slide.subtitle}</p>
-                <Link
-                  to={`/seccion${index + 1}`}
-                  className="mt-8 bg-green-800 text-white px-8 py-3 rounded-full hover:bg-green-700 transition-colors pointer-events-auto"
-                >
-                  Descubrir más
-                </Link>
-              </div>
             </div>
           </SwiperSlide>
         ))}
