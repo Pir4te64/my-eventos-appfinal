@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import IconSVG from '../components/IconSVG'
 
 export default function Seccion6() {
   return (

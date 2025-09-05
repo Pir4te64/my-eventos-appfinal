@@ -22,22 +22,22 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       <ScrollToTop />
       <NavBarEventos />
-      <main className="container mx-auto px-4 py-8">
+      <main>
       <Routes>
         {/* Redirigir la ruta raíz a /mice */}
         <Route path="/" element={<Navigate to="/mice" replace />} />
         
         {/* Todas las rutas bajo /mice con nombres descriptivos */}
-        <Route path="/mice" element={<Home />} />
-        <Route path="/mice/nos-reunimos-posadas" element={<Seccion1 />} />
-        <Route path="/mice/parque-conocimiento" element={<Seccion2 />} />
-        <Route path="/mice/agenda-mice-deportivos" element={<Seccion3 />} />
-        <Route path="/mice/catalogo-locaciones" element={<Seccion4 />} />
-        <Route path="/mice/posadas-deportiva" element={<Seccion5 />} />
-        <Route path="/mice/posadas-sustentable" element={<Seccion6 />} />
-        <Route path="/mice/posadas-universitaria" element={<Seccion7 />} />
-        <Route path="/mice/bureau-convenciones" element={<Seccion8 />} />
-        <Route path="/mice/posadas-conectividad" element={<Seccion9 />} />
+        <Route path="/mice" element={<div className="container mx-auto px-4 py-8"><Home /></div>} />
+        <Route path="/mice/nos-reunimos-posadas" element={<div className="container mx-auto px-4 py-8"><Seccion1 /></div>} />
+        <Route path="/mice/parque-conocimiento" element={<div className="container mx-auto px-4 py-8"><Seccion2 /></div>} />
+        <Route path="/mice/agenda-mice-deportivos" element={<div className="container mx-auto px-4 py-8"><Seccion3 /></div>} />
+        <Route path="/mice/catalogo-locaciones" element={<div className="container mx-auto px-4 py-8"><Seccion4 /></div>} />
+        <Route path="/mice/posadas-deportiva" element={<div className="container mx-auto px-4 py-8"><Seccion5 /></div>} />
+        <Route path="/mice/posadas-sustentable" element={<div className="container mx-auto px-4 py-8"><Seccion6 /></div>} />
+        <Route path="/mice/posadas-universitaria" element={<div className="container mx-auto px-4 py-8"><Seccion7 /></div>} />
+        <Route path="/mice/bureau-convenciones" element={<div className="container mx-auto px-4 py-8"><Seccion8 /></div>} />
+        <Route path="/mice/posadas-conectividad" element={<div className="container mx-auto px-4 py-8"><Seccion9 /></div>} />
         <Route path="/mice/contacto" element={<Contacto />} />
         
         {/* Redirigir cualquier ruta no encontrada a /mice */}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="OBJECTS" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-2 {
+        stroke-linecap: round;
+      }
+
+      .cls-3, .cls-4, .cls-2 {
+        stroke-linejoin: round;
+      }
+
+      .cls-3, .cls-5, .cls-7, .cls-6, .cls-2 {
+        stroke-width: 1.8px;
+      }
+
+      .cls-3, .cls-5, .cls-8, .cls-6 {
+        fill: none;
+      }
+
+      .cls-3, .cls-5, .cls-6, .cls-2 {
+        stroke: #e63c7c;
+      }
+
+      .cls-4 {
+        fill: #00a06f;
+        stroke-width: 1.54px;
+      }
+
+      .cls-4, .cls-7 {
+        stroke: #fff;
+      }
+
+      .cls-5 {
+        stroke-dasharray: 0 0 3.66 3.66;
+      }
+
+      .cls-5, .cls-7, .cls-6 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-7 {
+        fill: #00794e;
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-8" width="150" height="150"/>
+    </clipPath>
+  </defs>
+  <g class="cls-9">
+    <g>
+      <g>
+        <path class="cls-6" d="m47.24,52.44c-.53.3-1.04.62-1.53.95"/>
+        <path class="cls-5" d="m42.82,55.65c-6.6,6.03-9.28,15.19-6.69,23.33,2.79,8.77,11.52,15.76,20.53,15.01,9.97-.83,18.96-11,18.69-23.8"/>
+        <path class="cls-6" d="m75.25,68.36c-.05-.59-.13-1.19-.22-1.79"/>
+      </g>
+      <g>
+        <g>
+          <path class="cls-4" d="m75,45.68c-11.52,0-20.89,9.37-20.89,20.89,0,7.84,9.74,24.78,16.18,35.13,2.17,3.49,7.25,3.49,9.42,0,6.44-10.35,16.18-27.29,16.18-35.13,0-11.52-9.37-20.89-20.89-20.89Z"/>
+          <circle class="cls-2" cx="75" cy="66.57" r="11.4" transform="translate(-4.83 127.27) rotate(-78.84)"/>
+        </g>
+        <line class="cls-3" x1="56.24" y1="104.32" x2="93.69" y2="104.32"/>
+      </g>
+      <g>
+        <path class="cls-7" d="m47.24,45.68c-3.73,0-6.76,3.03-6.76,6.76,0,2.54,3.15,8.02,5.24,11.37.7,1.13,2.34,1.13,3.05,0,2.08-3.35,5.24-8.83,5.24-11.37,0-3.73-3.03-6.76-6.76-6.76Z"/>
+        <circle class="cls-1" cx="47.24" cy="52.44" r="2.36"/>
+      </g>
+    </g>
+  </g>
+</svg>

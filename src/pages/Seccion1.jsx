@@ -3,6 +3,7 @@ import React from 'react'
 import { FaPlane, FaHotel, FaUsers, FaCalendarAlt, FaUniversity, FaBuilding, FaUtensils, FaTheaterMasks, FaEnvelope } from 'react-icons/fa'
 import CountUp from 'react-countup'
 import { motion } from 'framer-motion'
+import IconSVG from '../components/IconSVG'
 
 export default function Seccion1() {
   const stats = [
@@ -18,32 +19,32 @@ export default function Seccion1() {
     {
       title: 'Conectividad',
       description: 'Aérea y Terrestre',
-      icon: <FaPlane className="text-xl" />
+      icon: 'moverte-ciudad'
     },
     {
       title: 'Parque del Conocimiento',
       description: 'Centro de Convenciones para más de 1000 asistentes',
-      icon: <FaBuilding className="text-xl" />
+      icon: 'smart-city'
     },
     {
       title: 'Desarrollo',
       description: 'Parque de la Salud y Parque Industrial',
-      icon: <FaBuilding className="text-xl" />
+      icon: 'smart-city'
     },
     {
       title: 'Educación',
       description: '55 institutos terciarios',
-      icon: <FaUniversity className="text-xl" />
+      icon: 'capacitaciones'
     },
     {
       title: 'Cultura',
       description: 'Teatros, museos y patrimonios históricos',
-      icon: <FaTheaterMasks className="text-xl" />
+      icon: 'eventos'
     },
     {
       title: 'Contacto',
       description: 'mice@posadas.gov.ar',
-      icon: <FaEnvelope className="text-xl" />
+      icon: 'centros-informacion'
     }
   ]
 
@@ -116,7 +117,13 @@ export default function Seccion1() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="text-green-800 mb-4">{feature.icon}</div>
+              <div className="text-green-800 mb-4">
+                <IconSVG 
+                  name={feature.icon} 
+                  size="w-6 h-6" 
+                  color="text-green-800" 
+                />
+              </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
               <p className="text-gray-600 text-sm">{feature.description}</p>
             </motion.div>

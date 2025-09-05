@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import IconSVG from '../IconSVG';
 
 export default function CategoryCard({ name, icon, onClick, onMouseEnter, onMouseLeave }) {
   return (
     <StyledWrapper>
       <a className="card" href="#" onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className="overlay" />
-        <div className="circle">{icon}</div>
+        <div className="circle">
+          <IconSVG name={icon} size="w-12 h-12" color="text-green-800" />
+        </div>
         <p>{name}</p>
       </a>
     </StyledWrapper>

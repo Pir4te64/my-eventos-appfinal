@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import IconSVG from '../components/IconSVG';
 
 const SEDES = [
   { nombre: 'UNaM - Universidad Nacional de Misiones', tipo: '', direccion: 'Avenida Fernando Elías Llamosas 9458', telefono: '3764 448-0200 Int.: 283 - 284.', email: 'informes@fce.unam.edu.ar', web: 'https://www.unam.edu.ar/', redes: 'Instagram: @unam_misiones' },

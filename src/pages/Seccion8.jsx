@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import bureau from '../data/bureau';
+import IconSVG from '../components/IconSVG';
 
 export default function Seccion8() {
   const [openIndex, setOpenIndex] = useState(null);

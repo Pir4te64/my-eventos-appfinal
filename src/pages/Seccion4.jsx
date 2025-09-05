@@ -2,6 +2,7 @@
 import React, { useState, useMemo } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaPhone, FaEnvelope, FaExternalLinkAlt, FaMapMarkerAlt, FaHotel, FaDoorOpen, FaTimes, FaUsers, FaBuilding, FaUniversity, FaGlassCheers, FaFutbol, FaBriefcase } from 'react-icons/fa'
+import IconSVG from '../components/IconSVG'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LabelList } from 'recharts'
 import styled from 'styled-components'
 import CategoryCard from '../components/cards/CategoryCard'
@@ -226,14 +227,14 @@ export default function Seccion4() {
   };
 
   const categories = [
-    { name: 'Hoteles con salones', icon: <FaHotel />, color: 'red', data: filtered },
-    { name: (<><span>Salones en</span><br/><span>Asociaciones</span></>), icon: <FaUsers />, color: 'blue', data: filteredA },
-    { name: 'Salones privados', icon: <FaBuilding />, color: 'green', data: filteredP },
-    { name: 'Locaciones complementarias', icon: <FaMapMarkerAlt />, color: 'red', data: filteredL },
-    { name: 'Salones gubernamentales', icon: <FaUniversity />, color: 'blue', data: filteredG },
-    { name: (<><span>Bares y Restaurantes</span><br/><span>para Eventos</span></>), icon: <FaGlassCheers />, color: 'green', data: filteredB },
-    { name: 'Salones en Instituciones Educativas', icon: <FaFutbol />, color: 'red', data: filteredD },
-    { name: 'Bureau', icon: <FaBriefcase />, color: 'blue', data: filteredBu }
+    { name: 'Hoteles con salones', icon: 'alojamientos', color: 'red', data: filtered },
+    { name: (<><span>Salones en</span><br/><span>Asociaciones</span></>), icon: 'eventos', color: 'blue', data: filteredA },
+    { name: 'Salones privados', icon: 'smart-city', color: 'green', data: filteredP },
+    { name: 'Locaciones complementarias', icon: 'centros-informacion', color: 'red', data: filteredL },
+    { name: 'Salones gubernamentales', icon: 'capacitaciones', color: 'blue', data: filteredG },
+    { name: (<><span>Bares y Restaurantes</span><br/><span>para Eventos</span></>), icon: 'gastronomia', color: 'green', data: filteredB },
+    { name: 'Salones en Instituciones Educativas', icon: 'capacitaciones', color: 'red', data: filteredD },
+    { name: 'Bureau', icon: 'centros-informacion', color: 'blue', data: filteredBu }
   ];
 
   const [hoveredIndex, setHoveredIndex] = useState(null);

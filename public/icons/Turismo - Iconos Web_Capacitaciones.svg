@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="OBJECTS" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00794e;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 1.8px;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        stroke: #e63c7c;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-3 {
+        fill: #00a06f;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-5" width="150" height="150"/>
+    </clipPath>
+  </defs>
+  <g class="cls-4">
+    <g>
+      <g>
+        <polygon class="cls-3" points="44.09 108.25 55.29 106.21 61.53 115.72 75.31 83.58 57.88 76.1 44.09 108.25"/>
+        <polygon class="cls-3" points="88.29 115.67 94.77 106.32 105.91 108.63 92.92 76.15 75.31 83.19 88.29 115.67"/>
+      </g>
+      <g>
+        <circle class="cls-1" cx="74.89" cy="74.39" r="27.32"/>
+        <path class="cls-2" d="m77.2,59.27l3.77,7.63,8.42,1.22c2.11.31,2.96,2.9,1.43,4.39l-6.09,5.94,1.44,8.39c.36,2.1-1.85,3.71-3.74,2.72l-7.53-3.96-7.53,3.96c-1.89.99-4.1-.61-3.74-2.72l1.44-8.39-6.09-5.94c-1.53-1.49-.69-4.09,1.43-4.39l8.42-1.22,3.77-7.63c.94-1.91,3.67-1.91,4.62,0Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

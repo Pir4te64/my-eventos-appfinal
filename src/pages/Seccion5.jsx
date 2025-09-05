@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { MagnifyingGlassIcon, MapPinIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ShareIcon } from '@heroicons/react/24/outline';
+import IconSVG from '../components/IconSVG';
 
 const SEDES = [
   { nombre: 'Autódromo Rosamonte', direccion: 'Calle (79) y Av. J M Fangio', telefono: '', email: 'autodromoposadas@gmail.com', web: 'https://automovilismomisionero.com.ar/', redes: 'Instagram: @autodromorosamonte Facebook: @AutodromoRosamonte' },

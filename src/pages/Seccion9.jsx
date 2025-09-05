@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import IconSVG from '../components/IconSVG'
 
 export default function Seccion9() {
   const [activeTab, setActiveTab] = useState('aerea')

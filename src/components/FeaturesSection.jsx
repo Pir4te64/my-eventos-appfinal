@@ -1,29 +1,29 @@
 // src/components/FeaturesSection.jsx
 import { Link } from 'react-router-dom'
-import { CalendarIcon, GlobeAltIcon, BuildingOfficeIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import IconSVG from './IconSVG'
 
 export default function FeaturesSection() {
     const features = [
       {
-        icon: CalendarIcon,
+        icon: 'eventos',
         title: 'Agenda MICE y Eventos Deportivos',
         description: 'Eventos profesionales y deportivos de primer nivel',
         path: '/mice/agenda-mice-deportivos',
       },
       {
-        icon: GlobeAltIcon,
+        icon: 'moverte-ciudad',
         title: 'Conectividad',
         description: 'Aérea y terrestre para llegar a Posadas',
         path: '/mice/posadas-conectividad',
       },
       {
-        icon: BuildingOfficeIcon,
+        icon: 'smart-city',
         title: 'Parque del Conocimiento',
         description: 'Centro de Convenciones y eventos culturales',
         path: '/mice/parque-conocimiento',
       },
       {
-        icon: MapPinIcon,
+        icon: 'centros-informacion',
         title: 'Catálogo de Locaciones',
         description: 'Espacios únicos para tus eventos',
         path: '/mice/catalogo-locaciones',
@@ -49,7 +49,6 @@ export default function FeaturesSection() {
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => {
-              const IconComponent = feature.icon
               return (
                 <Link
                   to={feature.path}
@@ -61,7 +60,11 @@ export default function FeaturesSection() {
                     {/* Icon Container */}
                     <div className="relative mb-6">
                       <div className="w-16 h-16 mx-auto bg-green-50 rounded-2xl flex items-center justify-center group-hover:bg-green-100 group-hover:scale-110 transition-all duration-300">
-                        <IconComponent className="w-8 h-8 text-green-600 group-hover:text-green-700 transition-colors" />
+                        <IconSVG 
+                          name={feature.icon} 
+                          size="w-8 h-8" 
+                          color="text-green-600 group-hover:text-green-700 transition-colors" 
+                        />
                       </div>
                     </div>
 

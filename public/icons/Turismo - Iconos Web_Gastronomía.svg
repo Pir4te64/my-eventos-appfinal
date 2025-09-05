@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="OBJECTS" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00a06f;
+        stroke-width: 1.54px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #fff;
+      }
+
+      .cls-1, .cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        fill: #00794e;
+        stroke-miterlimit: 10;
+        stroke-width: 1.8px;
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke: #e63c7c;
+        stroke-width: 2.3px;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-5" width="150" height="150"/>
+    </clipPath>
+  </defs>
+  <g class="cls-4">
+    <g>
+      <g>
+        <path class="cls-2" d="m75,76.63h0c14.58,0,26.42,11.84,26.42,26.42v4.6h-52.85v-4.6c0-14.58,11.84-26.42,26.42-26.42Z"/>
+        <rect class="cls-1" x="44.37" y="101.78" width="61.27" height="5.87" rx="2.94" ry="2.94"/>
+        <ellipse class="cls-1" cx="75" cy="76.63" rx="3.91" ry="6.69"/>
+      </g>
+      <path class="cls-3" d="m64.68,71.43c-4.02,0-7.27-3.26-7.27-7.27s3.26-7.27,7.27-7.27h20.63c4.02,0,7.27-3.26,7.27-7.27s-3.26-7.27-7.27-7.27"/>
+    </g>
+  </g>
+</svg>

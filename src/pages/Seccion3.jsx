@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { FaPlane, FaHotel, FaUtensils, FaCalendarAlt, FaUsers, FaChartLine, FaBuilding, FaMapMarkerAlt, FaExternalLinkAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import IconSVG from '../components/IconSVG'
 
 export default function Seccion3() {
   const [activeTab, setActiveTab] = useState('mice')

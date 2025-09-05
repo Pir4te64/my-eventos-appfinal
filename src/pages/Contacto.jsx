@@ -1,23 +1,95 @@
+import { useState } from 'react';
 import { FaUser, FaEnvelope, FaCommentDots, FaWhatsapp } from 'react-icons/fa';
 
 export default function Contacto() {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    email: '',
+    mensaje: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Validar que el mensaje no esté vacío
+    if (!formData.mensaje.trim()) {
+      alert('Por favor, escribe un mensaje antes de enviar.');
+      return;
+    }
+
+    // Crear el mensaje para WhatsApp
+    const mensajeWhatsApp = `Hola! Me contacto desde la web de eventos de Posadas.
+
+*Nombre:* ${formData.nombre || 'No especificado'}
+*Email:* ${formData.email || 'No especificado'}
+
+*Mensaje:*
+${formData.mensaje}
+
+¡Gracias!`;
+
+    // Codificar el mensaje para URL
+    const mensajeCodificado = encodeURIComponent(mensajeWhatsApp);
+    
+    // Abrir WhatsApp con el mensaje
+    const urlWhatsApp = `https://wa.me/5493764578395?text=${mensajeCodificado}`;
+    window.open(urlWhatsApp, '_blank');
+    
+    // Limpiar el formulario
+    setFormData({
+      nombre: '',
+      email: '',
+      mensaje: ''
+    });
+  };
+
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-green-100 py-12 px-4">
+    <div className="min-h-screen w-full flex flex-col justify-center items-center bg-green-100 py-12 px-4">
       <div className="max-w-md w-full mx-auto bg-white rounded-2xl shadow-lg p-8 border border-green-800 animate-fadeInUp">
         <h2 className="text-3xl font-bold text-center text-green-900 mb-2 tracking-wide">Contáctanos</h2>
-        <p className="text-center text-green-900 mb-6 text-sm italic">“La mejor manera de empezar es dejar de hablar y comenzar a hacer.”<br/>No dudes en escribirnos, tu consulta es bienvenida.</p>
-        <form className="space-y-4">
+        <p className="text-center text-green-900 mb-6 text-sm italic">"La mejor manera de empezar es dejar de hablar y comenzar a hacer."<br/>No dudes en escribirnos, tu consulta es bienvenida.</p>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="relative">
             <FaUser className="absolute left-3 top-1/2 -translate-y-1/2 text-green-800 text-lg transition-colors duration-300" />
-            <input type="text" placeholder="Nombre completo" className="w-full pl-10 pr-4 py-2 border border-green-800 rounded-lg text-sm focus:ring-2 focus:ring-green-900 focus:border-green-900 transition outline-none bg-green-50 placeholder:text-green-700" />
+            <input 
+              type="text" 
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleInputChange}
+              placeholder="Nombre completo" 
+              className="w-full pl-10 pr-4 py-2 border border-green-800 rounded-lg text-sm focus:ring-2 focus:ring-green-900 focus:border-green-900 transition outline-none bg-green-50 placeholder:text-green-700" 
+            />
           </div>
           <div className="relative">
             <FaEnvelope className="absolute left-3 top-1/2 -translate-y-1/2 text-green-800 text-lg transition-colors duration-300" />
-            <input type="email" placeholder="Correo electrónico" className="w-full pl-10 pr-4 py-2 border border-green-800 rounded-lg text-sm focus:ring-2 focus:ring-green-900 focus:border-green-900 transition outline-none bg-green-50 placeholder:text-green-700" />
+            <input 
+              type="email" 
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Correo electrónico" 
+              className="w-full pl-10 pr-4 py-2 border border-green-800 rounded-lg text-sm focus:ring-2 focus:ring-green-900 focus:border-green-900 transition outline-none bg-green-50 placeholder:text-green-700" 
+            />
           </div>
           <div className="relative">
             <FaCommentDots className="absolute left-3 top-3 text-green-800 text-lg transition-colors duration-300" />
-            <textarea placeholder="Tu mensaje" rows={4} className="w-full pl-10 pr-4 py-2 border border-green-800 rounded-lg text-sm focus:ring-2 focus:ring-green-900 focus:border-green-900 transition outline-none bg-green-50 placeholder:text-green-700 resize-none" />
+            <textarea 
+              name="mensaje"
+              value={formData.mensaje}
+              onChange={handleInputChange}
+              placeholder="Tu mensaje" 
+              rows={4} 
+              className="w-full pl-10 pr-4 py-2 border border-green-800 rounded-lg text-sm focus:ring-2 focus:ring-green-900 focus:border-green-900 transition outline-none bg-green-50 placeholder:text-green-700 resize-none" 
+              required
+            />
           </div>
           <button type="submit" className="w-full py-2 bg-green-900 hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:scale-105 hover:shadow-lg animate-fadeInUp delay-200">Enviar Mensaje</button>
         </form>

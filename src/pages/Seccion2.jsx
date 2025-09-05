@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { FaBuilding, FaUsers, FaMicrophone, FaWifi, FaParking, FaMapMarkerAlt, FaPhone, FaEnvelope, FaGlobe, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import IconSVG from '../components/IconSVG'
 
 export default function Seccion2() {
   const [activeTab, setActiveTab] = useState('convenciones')
