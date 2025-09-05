@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <Slider />
       {/* <TrustLogos /> */}
-      <CarouselCards items={courseItems} />
+      {/* <CarouselCards items={courseItems} /> */}
       <FeaturesSection />
       <Testimonial />
       {/* <Newsletter /> */}

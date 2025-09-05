@@ -54,32 +54,30 @@ export default function FeaturesSection() {
                 <Link
                   to={feature.path}
                   key={index}
-                  className="group relative bg-white rounded-2xl shadow-sm hover:shadow-2xl hover:bg-green-800 transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 overflow-hidden"
+                  className="group relative bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 overflow-hidden hover:border-green-200"
                 >
                   {/* Card Content */}
                   <div className="p-8 text-center">
                     {/* Icon Container */}
                     <div className="relative mb-6">
-                      <div className="w-16 h-16 mx-auto bg-green-50 rounded-2xl flex items-center justify-center group-hover:bg-green-700 transition-all duration-300">
-                        <IconComponent className="w-8 h-8 text-green-600 group-hover:text-white transition-colors" />
+                      <div className="w-16 h-16 mx-auto bg-green-50 rounded-2xl flex items-center justify-center group-hover:bg-green-100 group-hover:scale-110 transition-all duration-300">
+                        <IconComponent className="w-8 h-8 text-green-600 group-hover:text-green-700 transition-colors" />
                       </div>
-                      {/* Subtle glow effect */}
-                      <div className="absolute inset-0 bg-green-100 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
 
                     {/* Text Content */}
                     <div className="space-y-3">
-                      <h3 className="font-bevietnam text-xl font-bold text-gray-900 group-hover:text-white transition-colors leading-tight">
+                      <h3 className="font-bevietnam text-xl font-bold text-gray-900 group-hover:text-green-800 transition-colors leading-tight">
                         {feature.title}
                       </h3>
-                      <p className="text-sm text-gray-600 group-hover:text-green-100 transition-colors font-source leading-relaxed">
+                      <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors font-source leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
 
                     {/* Arrow indicator */}
-                    <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <div className="w-8 h-8 mx-auto bg-green-700 rounded-full flex items-center justify-center">
+                    <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
+                      <div className="w-8 h-8 mx-auto bg-green-600 rounded-full flex items-center justify-center group-hover:bg-green-700 transition-colors">
                         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
@@ -88,7 +86,7 @@ export default function FeaturesSection() {
                   </div>
 
                   {/* Subtle border animation */}
-                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-green-600 transition-all duration-300 opacity-0 group-hover:opacity-20"></div>
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-green-300 transition-all duration-300"></div>
                 </Link>
               )
             })}
